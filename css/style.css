@@ -124,15 +124,15 @@ article h1{
 
 .respuesta{
     display: flex;
-    align-items: center;
-    width: 85%;
+    justify-content: space-around;
+    align-items: sp;
+    width: 100%;
 }
 
 
 .respuesta label{
-    width: 100%;
+    width: 80%;
     line-height: 55px;
-    padding-left: 30px;
     font-size: 1.2em;
     text-align: center;
 }

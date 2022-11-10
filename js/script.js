@@ -114,11 +114,45 @@ window.onload = function () {
 
 
     function comprueba() {
+        
+     
         let radios = document.querySelectorAll("input[type]:checked");
-
+        
         for (let r of radios) {
-            r.nextElementSibling.style.backgroundColor = r.value == "true" ? "rgba(32, 108, 32, 0.486)" : "rgba(171, 19, 19, 0.492)";
+            if(r.value=="true"){
+                r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
+                r.nextElementSibling.style.borderRadius = "10px";
+                let ima = document.createElement("img");
+                ima.width="40";
+                ima.src = `./images/correcto.png`;
+                r.parentElement.appendChild(ima);
+            }else{
+                r.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
+                r.nextElementSibling.style.borderRadius = "10px";
+                let ima = document.createElement("img");
+                ima.width="40";
+                ima.src = `./images/incorrecto.png`;
+                r.parentElement.appendChild(ima);
+            }
+        };
+        
+
+
+
+        
+        // let tick = document.createElement("div");
+        // let check = document.createElement("img");
+        // check.width = "40";
+        // r.parentElement.appendChild(tick);
+        // tick.appendChild(check);
+        // check.src = `./images/correcto.png`;
+
+        /*
+         r.nextElementSibling.style.backgroundColor = r.value == "true" ? "rgba(32, 108, 32, 0.486)" : "rgba(171, 19, 19, 0.492)";
             r.nextElementSibling.style.borderRadius = "10px";
+        */
+
+
+
         };
     };
-};
