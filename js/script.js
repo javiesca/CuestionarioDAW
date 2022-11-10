@@ -115,9 +115,7 @@ window.onload = function () {
 
     function comprueba() {
         
-     
         let radios = document.querySelectorAll("input[type]:checked");
-        
         for (let r of radios) {
             if(r.value=="true"){
                 r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
