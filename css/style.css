@@ -67,7 +67,6 @@ nav span:hover{
 }
 
 
-
 article{
     display: flex;
     flex-direction: column;
@@ -132,14 +131,12 @@ article h1{
     width: 100%;
 }
 
-
 .respuesta label{
     width: 80%;
     line-height: 55px;
     font-size: 1.2em;
     text-align: center;
 }
-
 
 .respuesta label:hover{
     background-color: rgb(157, 191, 205);

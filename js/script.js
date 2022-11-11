@@ -117,20 +117,30 @@ window.onload = function () {
         
         let radios = document.querySelectorAll("input[type]:checked");
         for (let r of radios) {
+            // r.nextElementSibling.style.backgroundColor = "rgb(157, 191, 205)";
+
             if(r.value=="true"){
                 r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
                 r.nextElementSibling.style.borderRadius = "10px";
-                let ima = document.createElement("img");
-                ima.width="40";
-                ima.src = `./images/correcto.png`;
-                r.parentElement.appendChild(ima);
+                //Insertamos <img> correcta
+                r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+
+
+                // let ima = document.createElement("img");
+                // ima.width="40";
+                // ima.src = `./images/correcto.png`;
+                // r.parentElement.appendChild(ima);
             }else{
                 r.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
                 r.nextElementSibling.style.borderRadius = "10px";
-                let ima = document.createElement("img");
-                ima.width="40";
-                ima.src = `./images/incorrecto.png`;
-                r.parentElement.appendChild(ima);
+                //Insertamos <img> correcta
+                r.parentElement.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
+
+                
+                // let ima = document.createElement("img");
+                // ima.width="40";
+                // ima.src = `./images/incorrecto.png`;
+                // r.parentElement.appendChild(ima);
             }
         };
         
