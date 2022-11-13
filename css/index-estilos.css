@@ -1,0 +1,94 @@
+@import url("../css/variables.css");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente-principal);
+}
+
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/libros.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0131549d;
+    max-width: 60%;
+    backdrop-filter: blur(8px);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+section h1{
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+section p {
+    line-height: 25px;
+    width: 80%;
+}
+
+.logos{
+    background-color: rgba(255, 255, 255, 0.733);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 40%;
+    max-width: 80%;
+    gap: 50px;
+    margin: 40px 0;
+    padding: 0px 40px; 
+}
+
+.icos{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 40px 0;
+    gap: 20px;
+}
+
+.icos h2{
+    color:var(--color-principal);
+}
+
+.boton{
+    display: flex;
+    margin: 40px 0;
+    width: 220px;
+    height: 70px;
+    background-color: #BD0533;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+
+
+
+
+

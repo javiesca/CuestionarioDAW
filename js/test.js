@@ -376,7 +376,13 @@ let test = [
             }
         ]
 
+    },
+    {
+    "categoria": "Historia",
+        "imgbody":"Geografía.webp",
+        "imgico":"icoHistoria.png"
     }
+  
 ];
 
 export{test};

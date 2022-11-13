@@ -123,7 +123,7 @@ window.onload = function () {
                 r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
                 r.nextElementSibling.style.borderRadius = "10px";
                 //Insertamos <img> correcta
-                r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+                 r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
 
 
                 // let ima = document.createElement("img");
