@@ -97,7 +97,7 @@ let test = [
             },
             {
                 "pregunta": "¿Qué planeta no tiene anillos?",
-                "tipo": "multiple",
+                "tipo": "simple",
                 "respuestas": [
                     {
                         "respuesta": "Plutón",
@@ -173,11 +173,11 @@ let test = [
                 "respuestas": [
                     {
                         "respuesta": "250",
-                        "correcta": ""
+                        "correcta": "false"
                     },
                     {
                         "respuesta": "395",
-                        "correcta": ""
+                        "correcta": "false"
                     },
                     {
                         "respuesta": "365",
@@ -340,7 +340,7 @@ let test = [
             },
             {
                 "pregunta": "Santo Domingo es la capital de...?",
-                "tipo": "multiple",
+                "tipo": "simple",
                 "respuestas": [
                     {
                         "respuesta": "Puerto Rico",
@@ -358,7 +358,7 @@ let test = [
             },
             {
                 "pregunta": "¿En qué isla Canaria se encuentra La Caldera de Taburiente?",
-                "tipo": "multiple",
+                "tipo": "simple",
                 "respuestas": [
                     {
                         "respuesta": "La Gomera",
@@ -378,11 +378,198 @@ let test = [
 
     },
     {
-    "categoria": "Historia",
-        "imgbody":"Geografía.webp",
-        "imgico":"icoHistoria.png"
+        "categoria": "Historia",
+        "imgbody":"Historia.webp",
+        "imgico":"icoHistoria.png",
+        "preguntas": [
+            {
+                "pregunta": "El imperio otomano es también conocido como:",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Imperio turco",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Imperio safávida",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Imperio bizantino",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿Quien fue el último rey de Italia?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Alberto IV",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Humberto II",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Victor Manuel III",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿Donde se celebraron los primeros juegos olimpicos de la Era Moderna?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Atenas",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Olimpia",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Esparta",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿En qué año se produjo el Golpe de Estado en españa conocido como el 23F?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "1971",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "1981",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "1991",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿Como murio Juana de Arco?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Ahoracada",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Lapidada",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Quemada",
+                        "correcta": "true"
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿En que año se produce el accidente nuclear de Chernóbil ?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "1986",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "1989",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "1991",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿En qué año se inció la Guerra Civil Española?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "1925",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "1936",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "1940",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿Contra quién lucho Leónidas en la Batalla de las Termópilas?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Darío",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Temístocles",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Jerjes",
+                        "correcta": "true"
+                    }
+                ]
+            },
+            {
+                "pregunta": "Cuál fue el primer animal clonado de la historia?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Oveja",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Rana",
+                        "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Ratón",
+                        "correcta": ""
+                    }
+                ]
+            },
+            {
+                "pregunta": "¿Cómo se llamo la oveja que se convirtió en el primer mamífero en ser clonado?",
+                "tipo": "simple",
+                "respuestas": [
+                    {
+                        "respuesta": "Dory",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Molly",
+                        "correcta": ""
+                    },
+                    {
+                        "respuesta": "Dolly",
+                        "correcta": "true"
+                    }
+                ]
+            }
+        ]
+
     }
-  
+    
+
 ];
+    
+  
+
 
 export{test};
