@@ -260,9 +260,6 @@ button{
     font-size: 15px;
    }
 
-   .respuesta label{
-    font-size: 1em;
-   }
 
    article{
     width: 80%;
@@ -274,7 +271,10 @@ button{
 
    .respuesta label{
     line-height: 25px;
+    font-size: 1em;
+    margin-top: 10px;
    }
+
 
    .pregunta-titulo span{
     text-align: center;
