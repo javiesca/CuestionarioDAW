@@ -99,7 +99,7 @@ article h1{
     align-items: flex-start;
     /* padding: 30px; */
     padding-bottom: 20px;
-    width: 60%;
+    width: 70%;
     background-color: rgb(234, 238, 236);
     border-radius: 30px;
 }
@@ -249,6 +249,10 @@ button{
     color: white;
     width: 40px;
     height: 40px;
+    }
+
+    .pregunta{
+        width: 75%;
     }
 
 
