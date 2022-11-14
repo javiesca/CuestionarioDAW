@@ -2,4 +2,5 @@
     --fuente-principal:"'Montserrat', sans-serif;";
     --color-principal:#293241;
     --color-resaltar:#A46262;
+    user-select: none;
 }

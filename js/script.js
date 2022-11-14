@@ -118,18 +118,18 @@ window.onload = function () {
         //contadores de respuestas correctas e incorrectas
         let respCorrectas = 0;
         let respIncorrectas = 0;
-        let respSincontestar = 0;
-
+        let nota = 0;
+        
         //desactiva el Boton una vez corrige
-        this.children[0].disabled=true;
-        this.children[0].style.backgroundColor = "grey";
-        this.children[0].style.cursor="default";
+        // this.children[0].disabled=true;
+        // this.children[0].style.backgroundColor = "grey";
+        // this.children[0].style.cursor="default";
 
         //desactiva el efecto hover de los label
-        let label = document.querySelectorAll("label");
-        for(let l of label){
-        l.style.backgroundColor="#EAEEEC";
-        }
+        // let label = document.querySelectorAll("label");
+        // for(let l of label){
+        // l.style.backgroundColor="#EAEEEC";
+        // }
 
         //corrige las preguntas
         let radios = document.querySelectorAll("input");
@@ -140,6 +140,7 @@ window.onload = function () {
                 //Insertamos <img> correcta
                 //  r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
                 respCorrectas++;
+                nota = nota +1;
             } 
 
             if(r.value==="false" && r.checked)  {
@@ -148,24 +149,44 @@ window.onload = function () {
                 //Insertamos <img> incorrecta
                 //  r.parentElement.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
                 respIncorrectas++;
-            }
-            
-        };
-
-        for(let pintaC of label){
-            if(pintaC.previousElementSibling.value==="true"){
-                pintaC.style.backgroundColor = "green";
+                nota = nota -0.25;
             }
         };
 
+        let infor = document.querySelector(".infor");
+        infor.innerHTML+=`<p>Has sacado un ${respCorrectas} en el test!!</p>`
+
+        // for(let pintaC of label){
+        //     if(pintaC.previousElementSibling.value==="true"){
+        //         pintaC.style.backgroundColor = "green";
+        //     }
+        // };
 
 
 
-        // let ventana = document.querySelector(".corrige");
+        let ventana = document.querySelector(".resultados");
+        ventana.classList.remove("esconde");
+        
+        let botones = document.querySelectorAll(".resultados .botones button");
+      
+        for(let b of botones){
+            b.addEventListener("click", cierra);
+        }
+        
+        function cierra(){
+            let info = document.querySelector(".infor");
+            info.innerHTML="";
 
-        // ventana.classList.add("ventana");
-    
+            if (this.textContent=="Revisar"){
+               ventana.classList.add("esconde");
+            }
 
+            if(this.textContent=="Repetir"){
+                document.body.children[0].nextElementSibling.children[0].children[0].click();
+                ventana.classList.add("esconde");
+            }
+
+        }
     };
 
   
