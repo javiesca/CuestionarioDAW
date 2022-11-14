@@ -128,27 +128,42 @@ window.onload = function () {
         //desactiva el efecto hover de los label
         let label = document.querySelectorAll("label");
         for(let l of label){
-            l.style.backgroundColor="#EAEEEC";
+        l.style.backgroundColor="#EAEEEC";
         }
 
         //corrige las preguntas
-        let radios = document.querySelectorAll("input[type]:checked");
+        let radios = document.querySelectorAll("input");
         for (let r of radios) {
-            if (r.value == "true") {
+            if (r.value === "true" && r.checked) {
                 r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
                 r.nextElementSibling.style.borderRadius = "10px";
                 //Insertamos <img> correcta
-                // r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+                //  r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
                 respCorrectas++;
-            } else {
+            } 
+
+            if(r.value==="false" && r.checked)  {
                 r.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
                 r.nextElementSibling.style.borderRadius = "10px";
                 //Insertamos <img> incorrecta
-                // r.parentElement.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
+                //  r.parentElement.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
                 respIncorrectas++;
-
-            };
+            }
+            
         };
+
+        for(let pintaC of label){
+            if(pintaC.previousElementSibling.value==="true"){
+                pintaC.style.backgroundColor = "green";
+            }
+        };
+
+
+
+
+        // let ventana = document.querySelector(".corrige");
+
+        // ventana.classList.add("ventana");
     
 
     };
