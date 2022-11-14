@@ -238,6 +238,10 @@ button{
     width: 90%;
    }
 
+   header{
+    height: 150px;
+   }
+
    .respuesta label{
     line-height: 25px;
    }
