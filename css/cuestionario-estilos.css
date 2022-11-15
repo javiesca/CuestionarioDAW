@@ -103,6 +103,7 @@ article h1{
     width: 70%;
     background-color: rgb(234, 238, 236);
     border-radius: 30px;
+    position: relative;
 }
 
 .pregunta-titulo{
@@ -114,6 +115,7 @@ article h1{
 
 
 .pregunta-titulo h3{
+    margin-left: 90px;
     margin-top: 5px;
     font-size: 20px;
     width: 90%;
@@ -126,6 +128,8 @@ article h1{
     color: white;
     width: 60px;
     height: 60px;
+    position: absolute;
+    top:0px;
 }
 
 
@@ -217,7 +221,7 @@ button{
     padding-top: 40px;
     background-color: rgba(255, 255, 255, 0.869);
     width: 50vw;
-    height: 30%;
+    height: 60%;
     gap: 30px;
     display: flex;
     flex-direction: column;
@@ -258,6 +262,7 @@ button{
 
    .pregunta-titulo h3{
     font-size: 15px;
+    margin-left: 40px;
    }
 
 
@@ -281,8 +286,8 @@ button{
     font-size: 20px;
     background-color: var(--color-principal);
     color: white;
-    width: 30px;
-    height: 45px;
+    width: 25px;
+    height: 40px;
     }
 
     .pregunta{
@@ -294,7 +299,11 @@ button{
     }
 
 
-
+    @media(max-width:1200px){
+        .pregunta{
+            width: 90%;
+        }
+    }
 
 }
 
