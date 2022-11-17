@@ -186,8 +186,8 @@ input[type="radio"] {
   display: none;
 }
 
-input[type="radio"]:checked + .divlabel,
-input[type="checkbox"]:checked + .divlabel {
+input[type="radio"]:checked + .divlabelh,
+input[type="checkbox"]:checked + .divlabelh {
   background-color: rgb(157, 191, 205);
   border-radius: 10px;
 }
@@ -284,20 +284,20 @@ button{
     height: 150px;
   }
 
-  .respuesta label {
+  .divlabel, .divlabelh {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
+    padding: 5px 5px;
     width: 60%;
-    line-height: 25px;
-    font-size: 1em;
+    line-height: 15px;
     margin-top: 10px;
   }
 
-  .respuesta img {
-    justify-self: flex-end;
+  label{
+    
   }
+
 
   .pregunta-titulo span {
     text-align: center;

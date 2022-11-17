@@ -60,6 +60,10 @@ window.onload = function () {
                 let divPreg = document.createElement("div");
                 divPreg.classList.add("pregunta");
 
+                //data-attribute a los div de preguntas segun sean simples o multiples
+                divPreg.dataset.tipo=pregunt.tipo;
+
+
                 let divTituloPreg = document.createElement("div");
                 divTituloPreg.classList.add("pregunta-titulo");
 
@@ -111,55 +115,25 @@ window.onload = function () {
             article.appendChild(divButton);
 
             //QuerySelector Boton de Corregir
-            document.querySelector(".corrige").addEventListener("click", corrige);
+            document.querySelector(".corrige").addEventListener("click", () => {corrige()});
         };
     };
 
+   
+}
 
-
-    /*
-    MIRAR CORRECCION
-    ----------------------------------------------
-    --Preguntas Simples--
-    Cada pregunta acertada vale 1 punto
-
-    --Preguntas Multiples--
-    Cada pregunta acertada vale 1/3
-
-    --Resulado--
-    Redondear a 10 (Por lo del 1/3)
-    */
-
-
-    function corrige() {
-        let respCorrectas = 0;
-        let radios = document.querySelectorAll("input");
-        //comprueba que se han checkeado al menos 7 preguntas
-
-        
-
-
-        //corrige las preguntas
-        for (let r of radios) {
-            if (r.value === "true" && r.checked) {
-                r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
-                r.nextElementSibling.style.borderRadius = "10px";
-                respCorrectas++;
-            }
-
-            if (r.value === "false" && r.checked) {
-                r.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
-                r.nextElementSibling.style.borderRadius = "10px";
-                r.nextElementSibling.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
-            }
-
-            if (r.value === "true") {
-                r.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
-            }
-        };
-        resultados(respCorrectas);
+function corrige() {
+    let respCorrectas = 0;
+    let preguntas = document.querySelectorAll(".pregunta");
+    for(let pregunta of preguntas){
+        let tipo = pregunta.dataset.tipo;
+        if(tipo === "simple"){
+            respCorrectas += corrigeSimple(pregunta);
+        }else{
+            respCorrectas += corrigeMultiple(pregunta);
+        }
     }
-
+    resultados(respCorrectas);
 }
 
 function resultados(respCorrectas) {
@@ -188,6 +162,63 @@ function noCheck(){
     document.body.children[0].nextElementSibling.children[0].children[0].click();
     
 }
+
+function corrigeSimple(pregunta){
+    let puntuacionPregunta=0;
+    let radios = pregunta.querySelectorAll(".respuesta input");
+
+    for(let radio of radios){
+        if(radio.value ==="true" && radio.checked){
+            puntuacionPregunta++;
+        }
+    }
+
+    pintaPreguntas(radios);
+    return puntuacionPregunta;
+}
+
+function corrigeMultiple(pregunta){
+    let puntuacionPregunta = 0;
+    let cuentaCorrectas = 0;
+    let puntuaAcierto = 0;
+    let radios = pregunta.querySelectorAll(".respuesta input");
+
+    for(let r of radios){
+        if(r.value==="true")
+        cuentaCorrectas++;
+    }
+
+   puntuaAcierto = 1/cuentaCorrectas;
+   
+    for(let radio of radios){
+        if(radio.value === "true" && radio.checked){
+            puntuacionPregunta+=puntuaAcierto
+        }
+    }
+    
+    pintaPreguntas(radios);
+    return puntuacionPregunta;
+}
+
+function pintaPreguntas(radios) {
+    for (let radio of radios) {
+        if (radio.value === "true" && radio.checked) {
+            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
+            radio.nextElementSibling.style.borderRadius = "10px";
+        }
+
+        if (radio.value === "false" && radio.checked) {
+            radio.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
+            radio.nextElementSibling.style.borderRadius = "10px";
+            radio.nextElementSibling.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
+        }
+
+        if (radio.value === "true") {
+            radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+        }
+    }
+}
+
 
 
 
