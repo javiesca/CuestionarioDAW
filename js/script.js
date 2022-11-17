@@ -116,12 +116,27 @@ window.onload = function () {
     };
 
 
+
+    /*
+    MIRAR CORRECCION
+    ----------------------------------------------
+    --Preguntas Simples--
+    Cada pregunta acertada vale 1 punto
+
+    --Preguntas Multiples--
+    Cada pregunta acertada vale 1/3
+
+    --Resulado--
+    Redondear a 10 (Por lo del 1/3)
+    */
+
+
     function corrige() {
         let respCorrectas = 0;
         let radios = document.querySelectorAll("input");
         //comprueba que se han checkeado al menos 7 preguntas
 
-
+        
 
 
         //corrige las preguntas
