@@ -26,9 +26,9 @@ window.onload = function () {
             for (let nav of this.parentElement.children) {
                 nav.style.backgroundColor = "#29324183";
             }
+
             //Pinta el nav selecionado en color
             this.style.backgroundColor = "#A46262";
-
 
             //Borra pagina de inicio
             inicio.innerHTML = "";
@@ -86,10 +86,15 @@ window.onload = function () {
                     type.value = resp.correcta == "true" ? "true" : "false";
                     let label = document.createElement("label");
                     label.setAttribute("for", `respuesta${contadorPreg}${contadorResp}`);
+                    let divlabel = document.createElement("div");
+                    divlabel.classList.add("divlabelh");
                     label.textContent = resp.respuesta;
+
                     divResp.appendChild(type);
-                    divResp.appendChild(label);
+                    divlabel.appendChild(label);
+                    divResp.appendChild(divlabel);
                     divPreg.appendChild(divResp);
+
                     contadorResp++;
                 };
 
@@ -98,97 +103,76 @@ window.onload = function () {
                 contadorPreg++;
             };
 
-            //Creación del boton de corregir
-            let button = document.createElement("button");
+
             let divButton = document.createElement("div");
-            divButton.classList.add("divButton");
-            button.textContent = "Corrige";
-            button.classList.add("boton");
-            divButton.appendChild(button);
+            divButton.classList.add("div-boton");
+
+            divButton.innerHTML = `<button class="corrige">Corrige</button>`
             article.appendChild(divButton);
 
             //QuerySelector Boton de Corregir
-            document.querySelector(".divButton").addEventListener("click", comprueba);
+            document.querySelector(".corrige").addEventListener("click", corrige);
         };
     };
 
 
-    function comprueba() {
-
-        //contadores de respuestas correctas e incorrectas
+    function corrige() {
         let respCorrectas = 0;
-        let respIncorrectas = 0;
-        let nota = 0;
-        
-        //desactiva el Boton una vez corrige
-        // this.children[0].disabled=true;
-        // this.children[0].style.backgroundColor = "grey";
-        // this.children[0].style.cursor="default";
+        let radios = document.querySelectorAll("input");
+        //comprueba que se han checkeado al menos 7 preguntas
 
-        //desactiva el efecto hover de los label
-        // let label = document.querySelectorAll("label");
-        // for(let l of label){
-        // l.style.backgroundColor="#EAEEEC";
-        // }
+
+
 
         //corrige las preguntas
-        let radios = document.querySelectorAll("input");
         for (let r of radios) {
             if (r.value === "true" && r.checked) {
                 r.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
                 r.nextElementSibling.style.borderRadius = "10px";
-                //Insertamos <img> correcta
-                //  r.parentElement.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
                 respCorrectas++;
-                nota = nota +1;
-            } 
+            }
 
-            if(r.value==="false" && r.checked)  {
+            if (r.value === "false" && r.checked) {
                 r.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
                 r.nextElementSibling.style.borderRadius = "10px";
-                //Insertamos <img> incorrecta
-                //  r.parentElement.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
-                respIncorrectas++;
-                nota = nota -0.25;
+                r.nextElementSibling.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
+            }
+
+            if (r.value === "true") {
+                r.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
             }
         };
+        resultados(respCorrectas);
+    }
 
-        let infor = document.querySelector(".infor");
-        infor.innerHTML+=`<p>Has sacado un ${respCorrectas} en el test!!</p>`
+}
 
-        // for(let pintaC of label){
-        //     if(pintaC.previousElementSibling.value==="true"){
-        //         pintaC.style.backgroundColor = "green";
-        //     }
-        // };
+function resultados(respCorrectas) {
+    let infor = document.querySelector(".infor");
+    infor.innerHTML += `<p>Has sacado un ${respCorrectas} en el test!!</p>`;
+
+    let ventana = document.querySelector(".resultados");
+    ventana.classList.remove("esconde");
+
+    document.querySelector(".revisar").addEventListener("click", () => { cierra(infor, ventana) });
+
+}
+
+function cierra(infor, ventana) {
+    infor.innerHTML = "";
+    ventana.classList.add("esconde");
+
+    document.querySelector(".div-boton").innerHTML = `<button class="repite">Repite</button>`;
+
+    document.querySelector(".repite").addEventListener("click", () => {noCheck()});
+
+
+}
+
+function noCheck(){
+    document.body.children[0].nextElementSibling.children[0].children[0].click();
+    
+}
 
 
 
-        let ventana = document.querySelector(".resultados");
-        ventana.classList.remove("esconde");
-        
-        let botones = document.querySelectorAll(".resultados .botones button");
-      
-        for(let b of botones){
-            b.addEventListener("click", cierra);
-        }
-        
-        function cierra(){
-            let info = document.querySelector(".infor");
-            info.innerHTML="";
-
-            if (this.textContent=="Revisar"){
-               ventana.classList.add("esconde");
-            }
-
-            if(this.textContent=="Repetir"){
-                document.body.children[0].nextElementSibling.children[0].children[0].click();
-                ventana.classList.add("esconde");
-            }
-
-        }
-    };
-
-  
-
-};
