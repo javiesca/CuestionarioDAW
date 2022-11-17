@@ -158,6 +158,8 @@ function cierra(infor, ventana) {
 
 }
 
+//REPARAR ERROR. AL REPETIR TIENE QUE REPETIR LA CATEGORIA QUE ESTÁ EN CURSO
+
 function noCheck(){
     document.body.children[0].nextElementSibling.children[0].children[0].click();
     
@@ -195,7 +197,7 @@ function corrigeMultiple(pregunta){
             puntuacionPregunta+=puntuaAcierto
         }
     }
-    
+
     pintaPreguntas(radios);
     return puntuacionPregunta;
 }
