@@ -11,6 +11,7 @@ window.onload = function () {
 
 
     for (let categorias of test) {
+        
         let span = document.createElement("span");
         span.textContent = categorias.categoria;
         divNav.appendChild(span);
@@ -21,6 +22,7 @@ window.onload = function () {
 
 
         function pinta() {
+            
 
             //Pinta todos los nav del color original
             for (let nav of this.parentElement.children) {
@@ -38,6 +40,7 @@ window.onload = function () {
             //header
             let headerArticle = document.createElement("div");
             headerArticle.classList.add("header-article");
+
             //img
             let icono = document.createElement("img");
             icono.src = `./images/${categorias.imgico}`;
@@ -62,7 +65,6 @@ window.onload = function () {
 
                 //data-attribute a los div de preguntas segun sean simples o multiples
                 divPreg.dataset.tipo=pregunt.tipo;
-
 
                 let divTituloPreg = document.createElement("div");
                 divTituloPreg.classList.add("pregunta-titulo");
@@ -91,7 +93,7 @@ window.onload = function () {
                     let label = document.createElement("label");
                     label.setAttribute("for", `respuesta${contadorPreg}${contadorResp}`);
                     let divlabel = document.createElement("div");
-                    divlabel.classList.add("divlabelh");
+                    divlabel.classList.add("divlabel");
                     label.textContent = resp.respuesta;
 
                     divResp.appendChild(type);
@@ -106,7 +108,6 @@ window.onload = function () {
                 article.appendChild(divPreg);
                 contadorPreg++;
             };
-
 
             let divButton = document.createElement("div");
             divButton.classList.add("div-boton");
@@ -144,7 +145,6 @@ function resultados(respCorrectas) {
     ventana.classList.remove("esconde");
 
     document.querySelector(".revisar").addEventListener("click", () => { cierra(infor, ventana) });
-
 }
 
 function cierra(infor, ventana) {
@@ -153,16 +153,17 @@ function cierra(infor, ventana) {
 
     document.querySelector(".div-boton").innerHTML = `<button class="repite">Repite</button>`;
 
-    document.querySelector(".repite").addEventListener("click", () => {noCheck()});
-
-
+    document.querySelector(".repite").addEventListener("click", () => {repiteCuestionario()});
 }
 
-//REPARAR ERROR. AL REPETIR TIENE QUE REPETIR LA CATEGORIA QUE ESTÁ EN CURSO
-
-function noCheck(){
-    document.body.children[0].nextElementSibling.children[0].children[0].click();
-    
+ function repiteCuestionario(){
+     let nav = document.querySelectorAll(".nav span");
+     for(let n of nav){
+         if(n.style.backgroundColor == "rgb(164, 98, 98)"){
+             n.click();
+             break;
+         }
+     }
 }
 
 function corrigeSimple(pregunta){

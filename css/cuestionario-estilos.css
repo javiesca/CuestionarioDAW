@@ -1,10 +1,5 @@
+@import url("../css/reset.css");
 @import url("../css/variables.css");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 
 body {
@@ -128,6 +123,7 @@ article h1 {
   margin-top: 5px;
   font-size: 20px;
   border-bottom: 6px solid var(--color-principal);
+  padding-bottom: 20px;
 }
 
 .pregunta-titulo span {
@@ -148,13 +144,15 @@ article h1 {
   width: 100%;
 }
 
-.divlabelh{
+.divlabel{
   display: flex;
   width: 60%;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
   margin-bottom: 5px;
+  border: 2px solid var(--color-principal);
+  border-radius: 10px;
 }
 
 .divlabel{
@@ -175,7 +173,7 @@ article h1 {
 
 
 
-.respuesta .divlabelh:hover {
+.respuesta .divlabel:hover {
   background-color: rgb(157, 191, 205);
   transition: 0.2s;
   border-radius: 10px;
@@ -186,8 +184,8 @@ input[type="radio"] {
   display: none;
 }
 
-input[type="radio"]:checked + .divlabelh,
-input[type="checkbox"]:checked + .divlabelh {
+input[type="radio"]:checked + .divlabel,
+input[type="checkbox"]:checked + .divlabel {
   background-color: rgb(157, 191, 205);
   border-radius: 10px;
 }
@@ -284,7 +282,7 @@ button{
     height: 150px;
   }
 
-  .divlabel, .divlabelh {
+  .divlabel{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -293,11 +291,6 @@ button{
     line-height: 15px;
     margin-top: 10px;
   }
-
-  label{
-    
-  }
-
 
   .pregunta-titulo span {
     text-align: center;
