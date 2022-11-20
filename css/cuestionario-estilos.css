@@ -126,6 +126,14 @@ article {
   border-bottom: 5px solid var(--color-principal);
 }
 
+.pregunta-titulo span {
+  margin-left: 10px;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bolder;
+  color: var(--color-principal);
+}
+
 .pregunta-titulo h3 {
   text-align: center;
   margin-top: 8px;
@@ -136,14 +144,12 @@ article {
   width: 90%;
 }
 
-
-.pregunta-titulo span {
-  margin-left: 10px;
-  text-align: center;
-  font-size: 1.8em;
-  font-weight: bolder;
-  color: var(--color-principal);
+.pregunta-titulo img{
+  min-width: 5%;
+  padding: 5px 0;
 }
+
+
 
 .respuesta {
   display: flex;
@@ -167,6 +173,10 @@ article {
   line-height: 50px;
   padding-left: 50px;
   width: 100%;
+}
+
+.divlabel img{
+  min-width: 5%;
 }
 
 
@@ -333,6 +343,7 @@ button{
       line-height: 25px;
     }
 
+  
  
   }
 }
