@@ -123,6 +123,9 @@ article {
   width: 100%;
   padding: 0 20px;
   margin-bottom: 30px;
+  background-color: rgba(48, 65, 100, 0.458);
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
   border-bottom: 5px solid var(--color-principal);
 }
 
