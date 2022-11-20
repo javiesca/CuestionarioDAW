@@ -60,6 +60,7 @@ window.onload = function () {
             //Contador para atributo "name" de preguntas
             let contadorPreg = 1;
             for (let pregunt of categorias.preguntas) {
+
                 let divPreg = document.createElement("div");
                 divPreg.classList.add("pregunta");
 
@@ -70,13 +71,17 @@ window.onload = function () {
                 divTituloPreg.classList.add("pregunta-titulo");
 
                 let spanH3 = document.createElement("span");
-                spanH3.textContent = contadorPreg;
+                spanH3.textContent = `${contadorPreg}.`;
                 divTituloPreg.appendChild(spanH3);
 
                 let h3 = document.createElement("h3");
                 h3.textContent = pregunt.pregunta;
                 divTituloPreg.appendChild(h3);
 
+                let img = document.createElement("img");
+                img.src =  `./images/${pregunt.tipo}.png`;
+                img.width= "40";
+                divTituloPreg.appendChild(img);
                 divPreg.appendChild(divTituloPreg);
 
 
@@ -123,13 +128,18 @@ window.onload = function () {
    
 }
 
+//Función que recorre las preguntas. 
 function corrige() {
     let respCorrectas = 0;
     let preguntas = document.querySelectorAll(".pregunta");
+
+    //Asignamos un data-attribute según la pregunta sea simple o múltiple.
     for(let pregunta of preguntas){
         let tipo = pregunta.dataset.tipo;
+        //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
         if(tipo === "simple"){
             respCorrectas += corrigeSimple(pregunta);
+            //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
         }else{
             respCorrectas += corrigeMultiple(pregunta);
         }
@@ -176,34 +186,44 @@ function corrigeSimple(pregunta){
         }
     }
 
-    pintaPreguntas(radios);
+    pintaRespuestas(radios);
     return puntuacionPregunta;
 }
 
+//Función que corrige las respuestas múltiples
 function corrigeMultiple(pregunta){
     let puntuacionPregunta = 0;
-    let cuentaCorrectas = 0;
     let puntuaAcierto = 0;
+
+    //Asignamos un valor a la pregunta acertada devidiendo la nota total de la pregunta entre las posibles respuestas correctas.
+    //ej: Si hay 2 preguntas correctas 1/2=0.5 cada respuesta acertada.
+    let cuentaCorrectas = pregunta.querySelectorAll(".respuesta input[value='true']");
+    puntuaAcierto = 1 /cuentaCorrectas.length;
+
+    //Recorremos las respuestas checkeadas y asignamos el valor cálculado anteriormente a cada respuesta acertada.
     let radios = pregunta.querySelectorAll(".respuesta input");
-
-    for(let r of radios){
-        if(r.value==="true")
-        cuentaCorrectas++;
-    }
-
-   puntuaAcierto = 1/cuentaCorrectas;
-   
-    for(let radio of radios){
-        if(radio.value === "true" && radio.checked){
-            puntuacionPregunta+=puntuaAcierto
+    for(let correctas of radios){
+        if(correctas.checked && correctas.value == "true"){
+            puntuacionPregunta+=puntuaAcierto;
         }
     }
 
-    pintaPreguntas(radios);
+    //En las respuestas múltiples, pinta de color naranja las respuestas correctas no seleccionadas.
+    for(let correctas of cuentaCorrectas){
+        if(!correctas.checked){
+            correctas.nextElementSibling.style.backgroundColor = "orange";
+        }
+    }
+
+    //Despues de la corrección, llamamos a la función que colorea y añade una imagen según el resultado del test.
+    pintaRespuestas(radios);
+
     return puntuacionPregunta;
 }
 
-function pintaPreguntas(radios) {
+
+//Función que cambia el background y añade una imagen a las respuestas según el usuario haya acertado o no.
+function pintaRespuestas(radios) {
     for (let radio of radios) {
         if (radio.value === "true" && radio.checked) {
             radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
@@ -220,6 +240,8 @@ function pintaPreguntas(radios) {
             radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
         }
     }
+
+   
 }
 
 

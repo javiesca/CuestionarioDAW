@@ -196,7 +196,7 @@ let test = [
         "preguntas": [
             {
                 "pregunta": "¿En que país NO se localiza la ciudad de Hamburgo?",
-                "tipo": "compuesta",
+                "tipo": "multiple",
                 "respuestas": [
                     {
                         "respuesta": "Bélgica",

@@ -17,6 +17,12 @@ body {
   align-items: center;
 }
 
+.inicio h1{
+  font-size: 3em;
+  margin-bottom: 15px;
+  color:var(--color-principal)
+}
+
 
 header {
   height: 250px;
@@ -83,16 +89,16 @@ article {
   margin-bottom: 100px;
   background-color: var(--color-principal);
   width: 70%;
-  max-width: 1500px;
   border-radius: 10px;
   margin-top: 40px;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-article h1 {
+.header-article h1 {
   font-size: 50px;
   padding-top: 30px;
   color: white;
+  font-weight: bolder;
 }
 
 .pregunta {
@@ -104,7 +110,8 @@ article h1 {
   width: 80%;
   background-color: rgb(234, 238, 236);
   border-radius: 30px;
-  position: relative;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  
 }
 
 .pregunta-titulo {
@@ -114,27 +121,25 @@ article h1 {
   width: 95%;
   gap: 15px;
   margin-bottom: 30px;
+  border-bottom: 5px solid var(--color-principal);
+  margin-left: 15px;
 }
 
 .pregunta-titulo h3 {
-  margin-left: 90px;
   width: 100%;
-  text-align: justify;
-  margin-top: 5px;
-  font-size: 20px;
-  border-bottom: 6px solid var(--color-principal);
-  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 8px;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bolder;
 }
 
 .pregunta-titulo span {
   text-align: center;
-  font-size: 40px;
-  background-color: var(--color-principal);
-  color: white;
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 0px;
+  font-size: 1.8em;
+  font-weight: bolder;
+  width: 10%;
+  color: var(--color-principal);
 }
 
 .respuesta {
@@ -155,22 +160,11 @@ article h1 {
   border-radius: 10px;
 }
 
-.divlabel{
-  display: flex;
-  width: 60%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 20px;
-  margin-bottom: 5px;
-}
-
 .respuesta label {
   line-height: 50px;
-  font-size: 1.2em;
   padding-left: 50px;
   width: 100%;
 }
-
 
 
 .respuesta .divlabel:hover {
@@ -180,7 +174,7 @@ article h1 {
 }
 
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
   display: none;
 }
 
@@ -193,9 +187,9 @@ input[type="checkbox"]:checked + .divlabel {
 
 button{
   width: 150px;
-  height: 70px;
+  height: 60px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 18px;
   border-radius: 20px;
   background-color: var(--color-resaltar);
@@ -293,12 +287,8 @@ button{
   }
 
   .pregunta-titulo span {
-    text-align: center;
-    font-size: 20px;
-    background-color: var(--color-principal);
-    color: white;
-    width: 25px;
-    height: 40px;
+   
+  
   }
 
   .pregunta {
@@ -309,9 +299,34 @@ button{
     height: 60px;
   }
 
+
+
+
   @media (max-width: 700px) {
-    .pregunta {
+    .pregunta, .divlabel {
       width: 90%;
+    }
+
+    .nav{
+      height: 60px;
+      justify-content: space-around;
+      padding: 0 20px;
+    }
+    .nav span{
+      width: 25%;
+      font-size: 15px;
+    }
+
+    .header-article h1{
+      font-size: 1.5em;
+    }
+
+    .pregunta-titulo h3{
+      font-size: 0.7em;
+    }
+
+    .divlabel label{
+      font-style: 0.5em;
     }
   }
 }
