@@ -117,16 +117,15 @@ article {
 .pregunta-titulo {
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  gap: 10px;
   line-height: 30px;
   width: 95%;
-  gap: 15px;
   margin-bottom: 30px;
   border-bottom: 5px solid var(--color-principal);
-  margin-left: 15px;
 }
 
 .pregunta-titulo h3 {
-  width: 100%;
   text-align: center;
   margin-top: 8px;
   padding-bottom: 10px;
@@ -135,10 +134,10 @@ article {
 }
 
 .pregunta-titulo span {
+  margin-left: 10px;
   text-align: center;
   font-size: 1.8em;
   font-weight: bolder;
-  width: 10%;
   color: var(--color-principal);
 }
 
@@ -265,7 +264,6 @@ button{
 
   .pregunta-titulo h3 {
     font-size: 15px;
-    margin-left: 40px;
   }
 
   article {
@@ -306,17 +304,13 @@ button{
     .pregunta, .divlabel {
       width: 90%;
     }
-
+    
     .nav{
       height: 60px;
       justify-content: space-around;
       padding: 0 20px;
     }
-    .nav span{
-      width: 25%;
-      font-size: 15px;
-    }
-
+ 
     .header-article h1{
       font-size: 1.5em;
     }
@@ -325,8 +319,9 @@ button{
       font-size: 0.7em;
     }
 
-    .divlabel label{
-      font-style: 0.5em;
+    .pregunta-titulo span{
+      font-size: 1.3em;
     }
+
   }
 }
