@@ -71,17 +71,21 @@ window.onload = function () {
                 divTituloPreg.classList.add("pregunta-titulo");
 
                 let spanH3 = document.createElement("span");
-                spanH3.textContent = `${contadorPreg}.`;
+                spanH3.textContent = `${contadorPreg}`;
                 divTituloPreg.appendChild(spanH3);
 
                 let h3 = document.createElement("h3");
                 h3.textContent = pregunt.pregunta;
                 divTituloPreg.appendChild(h3);
 
+                //Icono para preguntas simples y multiples
                 let img = document.createElement("img");
                 img.src =  `./images/${pregunt.tipo}.png`;
-                img.width= "40";
+                img.width= "35";
+                img.title = `Pregunta ${pregunt.tipo.toUpperCase()}`
                 divTituloPreg.appendChild(img);
+
+                //Agregamos todo el contenido al div principal
                 divPreg.appendChild(divTituloPreg);
 
 

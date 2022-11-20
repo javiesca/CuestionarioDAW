@@ -131,7 +131,9 @@ article {
   text-align: center;
   font-size: 1.8em;
   font-weight: bolder;
-  color: var(--color-principal);
+  color: white;
+  background-color:var(--color-principal);
+  padding: 5px;
 }
 
 .pregunta-titulo h3 {
