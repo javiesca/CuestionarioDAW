@@ -299,14 +299,22 @@ button{
 
 
   @media (max-width: 700px) {
+    article{
+      width: 95%;
+    }
+
     .pregunta, .divlabel {
-      width: 90%;
+      width: 95%;
     }
 
     .nav{
       height: 60px;
       justify-content: space-around;
       padding: 0 20px;
+    }
+
+    .header-article{
+      margin-bottom: 5px;
     }
  
     .header-article h1{
@@ -319,6 +327,10 @@ button{
 
     .pregunta-titulo span{
       font-size: 1.3em;
+    }
+
+    .respuesta label{
+      line-height: 25px;
     }
 
  
