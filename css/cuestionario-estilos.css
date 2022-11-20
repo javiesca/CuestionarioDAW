@@ -137,6 +137,7 @@ article {
   color: white;
   background-color:var(--color-principal);
   padding: 5px;
+  border-radius: 8px;
 }
 
 .pregunta-titulo h3 {
@@ -322,6 +323,14 @@ button{
       width: 95%;
     }
 
+    .pregunta-titulo{
+      margin-bottom: 5px;
+    }
+
+    .respuesta{
+      padding: 0;
+    }
+
     .nav{
       height: 60px;
       justify-content: space-around;
@@ -339,6 +348,7 @@ button{
     .pregunta-titulo h3{
       font-size: 0.7em;
     }
+
 
     .pregunta-titulo span{
       font-size: 1.3em;

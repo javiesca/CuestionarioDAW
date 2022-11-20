@@ -195,7 +195,7 @@ let test = [
         "imgico":"icoGeografía.png",
         "preguntas": [
             {
-                "pregunta": "¿En que país NO se localiza la ciudad de Hamburgo?",
+                "pregunta": "¿En que países NO se localiza la ciudad de Hamburgo?",
                 "tipo": "multiple",
                 "respuestas": [
                     {
