@@ -11,7 +11,7 @@ window.onload = function () {
 
 
     for (let categorias of test) {
-        
+
         let span = document.createElement("span");
         span.textContent = categorias.categoria;
         divNav.appendChild(span);
@@ -20,10 +20,7 @@ window.onload = function () {
         //Función pinta CATEGORIA que seleccione
         span.addEventListener("click", pinta);
 
-
         function pinta() {
-            
-
             //Pinta todos los nav del color original
             for (let nav of this.parentElement.children) {
                 nav.style.backgroundColor = "#29324183";
@@ -65,7 +62,7 @@ window.onload = function () {
                 divPreg.classList.add("pregunta");
 
                 //data-attribute a los div de preguntas segun sean simples o multiples
-                divPreg.dataset.tipo=pregunt.tipo;
+                divPreg.dataset.tipo = pregunt.tipo;
 
                 let divTituloPreg = document.createElement("div");
                 divTituloPreg.classList.add("pregunta-titulo");
@@ -80,8 +77,8 @@ window.onload = function () {
 
                 //Icono para preguntas simples y multiples
                 let img = document.createElement("img");
-                img.src =  `./images/${pregunt.tipo}.png`;
-                img.width= "35";
+                img.src = `./images/${pregunt.tipo}.png`;
+                img.width = "35";
                 img.title = `Pregunta ${pregunt.tipo.toUpperCase()}`
                 divTituloPreg.appendChild(img);
 
@@ -124,31 +121,49 @@ window.onload = function () {
             divButton.innerHTML = `<button class="corrige">Corrige</button>`
             article.appendChild(divButton);
 
+
             //QuerySelector Boton de Corregir
-            document.querySelector(".corrige").addEventListener("click", () => {corrige()});
+            document.querySelector(".corrige").addEventListener("click", () => { corrige() });
         };
     };
 
-   
+
 }
 
 //Función que recorre las preguntas. 
 function corrige() {
-    let respCorrectas = 0;
-    let preguntas = document.querySelectorAll(".pregunta");
 
+    //CONDICION AL MENOS 6 PREGUNTAS CHECKEADAS
+    let preguntas = document.querySelectorAll(".pregunta");
+ 
+    let contadorCheckeada = 0;
+    for (let pregunta of preguntas) {
+        for (let resp of pregunta.children) {
+            if (resp.children[0].checked) {
+                contadorCheckeada++;
+                break
+            }
+        }
+    }
+
+    alert(contadorCheckeada + "MAS DE 5")
+
+
+
+    let respCorrectas = 0;
     //Asignamos un data-attribute según la pregunta sea simple o múltiple.
-    for(let pregunta of preguntas){
+    for (let pregunta of preguntas) {
         let tipo = pregunta.dataset.tipo;
         //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-        if(tipo === "simple"){
+        if (tipo === "simple") {
             respCorrectas += corrigeSimple(pregunta);
             //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-        }else{
+        } else {
             respCorrectas += corrigeMultiple(pregunta);
         }
     }
     resultados(respCorrectas);
+
 }
 
 function resultados(respCorrectas) {
@@ -167,25 +182,25 @@ function cierra(infor, ventana) {
 
     document.querySelector(".div-boton").innerHTML = `<button class="repite">Repite</button>`;
 
-    document.querySelector(".repite").addEventListener("click", () => {repiteCuestionario()});
+    document.querySelector(".repite").addEventListener("click", () => { repiteCuestionario() });
 }
 
- function repiteCuestionario(){
-     let nav = document.querySelectorAll(".nav span");
-     for(let n of nav){
-         if(n.style.backgroundColor == "rgb(164, 98, 98)"){
-             n.click();
-             break;
-         }
-     }
+function repiteCuestionario() {
+    let nav = document.querySelectorAll(".nav span");
+    for (let n of nav) {
+        if (n.style.backgroundColor == "rgb(164, 98, 98)") {
+            n.click();
+            break;
+        }
+    }
 }
 
-function corrigeSimple(pregunta){
-    let puntuacionPregunta=0;
+function corrigeSimple(pregunta) {
+    let puntuacionPregunta = 0;
     let radios = pregunta.querySelectorAll(".respuesta input");
 
-    for(let radio of radios){
-        if(radio.value ==="true" && radio.checked){
+    for (let radio of radios) {
+        if (radio.value === "true" && radio.checked) {
             puntuacionPregunta++;
         }
     }
@@ -195,26 +210,26 @@ function corrigeSimple(pregunta){
 }
 
 //Función que corrige las respuestas múltiples
-function corrigeMultiple(pregunta){
+function corrigeMultiple(pregunta) {
     let puntuacionPregunta = 0;
     let puntuaAcierto = 0;
 
     //Asignamos un valor a la pregunta acertada devidiendo la nota total de la pregunta entre las posibles respuestas correctas.
     //ej: Si hay 2 preguntas correctas 1/2=0.5 cada respuesta acertada.
     let cuentaCorrectas = pregunta.querySelectorAll(".respuesta input[value='true']");
-    puntuaAcierto = 1 /cuentaCorrectas.length;
+    puntuaAcierto = 1 / cuentaCorrectas.length;
 
     //Recorremos las respuestas checkeadas y asignamos el valor cálculado anteriormente a cada respuesta acertada.
     let radios = pregunta.querySelectorAll(".respuesta input");
-    for(let correctas of radios){
-        if(correctas.checked && correctas.value == "true"){
-            puntuacionPregunta+=puntuaAcierto;
+    for (let correctas of radios) {
+        if (correctas.checked && correctas.value == "true") {
+            puntuacionPregunta += puntuaAcierto;
         }
     }
 
     //En las respuestas múltiples, pinta de color naranja las respuestas correctas no seleccionadas.
-    for(let correctas of cuentaCorrectas){
-        if(!correctas.checked){
+    for (let correctas of cuentaCorrectas) {
+        if (!correctas.checked) {
             correctas.nextElementSibling.style.backgroundColor = "orange";
         }
     }
@@ -231,6 +246,7 @@ function pintaRespuestas(radios) {
     for (let radio of radios) {
         if (radio.value === "true" && radio.checked) {
             radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
+            radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
             radio.nextElementSibling.style.borderRadius = "10px";
         }
 
@@ -241,11 +257,11 @@ function pintaRespuestas(radios) {
         }
 
         if (radio.value === "true") {
-            radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
         }
     }
 
-   
+
 }
 
 
