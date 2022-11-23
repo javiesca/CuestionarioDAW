@@ -20,6 +20,8 @@ window.onload = function () {
         //Función pinta CATEGORIA que seleccione
         span.addEventListener("click", pinta);
 
+   
+
         function pinta() {
             //Pinta todos los nav del color original
             for (let nav of this.parentElement.children) {
@@ -174,6 +176,7 @@ function minimo(contadorCheckeada){
     infor.innerHTML += `<p>Has contestado ${contadorCheckeada}</p>`;
     let ventana = document.querySelector(".minimo");
     ventana.classList.remove("esconde");
+
      document.querySelector(".minimo .revisar").addEventListener("click", () => { cierra(infor, ventana) });
 }
 
@@ -181,33 +184,33 @@ function resultados(respCorrectas) {
     let infor = document.querySelector(".infor");
 
     if(respCorrectas > 8){
-        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p>
-        <br><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
         `;
 
         let img = document.createElement("img");
         img.src = `./images/einstein.png`;
-        img.width = "180";
+        
         infor.appendChild(img);
-    }else if(respCorrectas <8 && respCorrectas >5){
-        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p>
-        <br><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
+        infor.innerHTML += "<p>Eres un GENIO!!</p>";
+    }else if(respCorrectas <8 && respCorrectas >=5){
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
         `;
         let img = document.createElement("img");
         img.src = `./images/trofeo.png`;
-        img.width = "180";
+        
         infor.appendChild(img);
+        infor.innerHTML += "<p>Buen trabajo!!</p>";
     
     //--------------------------------    
     //REVISAR CORRECCION
     //--------------------------------
     }else{
-        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><br>
-        <p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
         let img = document.createElement("img");
         img.src = `./images/burro.png`;
-        img.width = "180";
-        infor.appendChild(img);
+      
+        infor.append(img);
+        infor.innerHTML += "<p>Uhmmmm...tienes que repasar mas</p>";
     }  
     
 

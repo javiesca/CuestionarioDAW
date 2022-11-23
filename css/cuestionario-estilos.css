@@ -255,25 +255,27 @@ button{
   justify-content: space-between;
   border-radius: 20px;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  flex-grow: 0;
 }
 
 .infor {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   height: 80%;
   font-size: 30px;
   margin-bottom: 30px;
 }
 
 .infor img{
-  margin-top: 40px;
+  width: 60%;
 }
+
 
 .info  .infor p span{
   font-size: 1.2em;
   color:rgb(136,86,86);
+  font-weight: bolder;
 }
 
 
@@ -375,6 +377,19 @@ button{
     .respuesta label{
       line-height: 25px;
     }
+
+    .info {
+      width: 90%;
+    }
+
+    .info  .infor p span{
+      font-size: 1.2em;
+    }
+
+    .info  .infor p{
+      font-size: 0.7em;
+    }
+    
 
   
  
