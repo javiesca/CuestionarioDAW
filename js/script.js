@@ -130,6 +130,7 @@ window.onload = function () {
 
 }
 
+//Función que cuenta preguntas respondidas
 function cuentaRespondidas(){
     let preguntas = document.querySelectorAll(".pregunta");
  
