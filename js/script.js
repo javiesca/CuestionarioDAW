@@ -130,10 +130,7 @@ window.onload = function () {
 
 }
 
-//Función que recorre las preguntas. 
-function corrige() {
-
-    //CONDICION AL MENOS 6 PREGUNTAS CHECKEADAS
+function cuentaRespondidas(){
     let preguntas = document.querySelectorAll(".pregunta");
  
     let contadorCheckeada = 0;
@@ -145,25 +142,41 @@ function corrige() {
             }
         }
     }
+}
 
-    alert(contadorCheckeada + "MAS DE 5")
+//Función que recorre las preguntas. 
+function corrige() {
 
+    //CONDICION AL MENOS 6 PREGUNTAS CHECKEADAS
+   
+    
 
-
-    let respCorrectas = 0;
-    //Asignamos un data-attribute según la pregunta sea simple o múltiple.
-    for (let pregunta of preguntas) {
-        let tipo = pregunta.dataset.tipo;
-        //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-        if (tipo === "simple") {
-            respCorrectas += corrigeSimple(pregunta);
-            //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-        } else {
-            respCorrectas += corrigeMultiple(pregunta);
+    if(contadorCheckeada < 5){
+        minimo(contadorCheckeada);
+    }else{
+        let respCorrectas = 0;
+        //Asignamos un data-attribute según la pregunta sea simple o múltiple.
+        for (let pregunta of preguntas) {
+            let tipo = pregunta.dataset.tipo;
+            //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+            if (tipo === "simple") {
+                respCorrectas += corrigeSimple(pregunta);
+                //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+            } else {
+                respCorrectas += corrigeMultiple(pregunta);
+            }
         }
+        resultados(respCorrectas);
     }
-    resultados(respCorrectas);
+}
 
+function minimo(contadorCheckeada){
+    let infor = document.querySelector(".minimo .infor");
+    infor.innerHTML += "<h1>Hay que marcar un mínimo de 5 preguntas</h1>"
+    infor.innerHTML += `<p>Has contestado ${contadorCheckeada}</p>`;
+    let ventana = document.querySelector(".minimo");
+    ventana.classList.remove("esconde");
+     document.querySelector(".minimo .revisar").addEventListener("click", () => { cierra(infor, ventana) });
 }
 
 function resultados(respCorrectas) {
@@ -173,10 +186,11 @@ function resultados(respCorrectas) {
     let ventana = document.querySelector(".resultados");
     ventana.classList.remove("esconde");
 
-    document.querySelector(".revisar").addEventListener("click", () => { cierra(infor, ventana) });
+    document.querySelector(".revisar").addEventListener("click", () => { cierraRepite(infor, ventana) });
 }
 
-function cierra(infor, ventana) {
+//Funcion que cierra ventana para ver corrección y repetir test
+function cierraRepite(infor, ventana) {
     infor.innerHTML = "";
     ventana.classList.add("esconde");
 
@@ -185,6 +199,13 @@ function cierra(infor, ventana) {
     document.querySelector(".repite").addEventListener("click", () => { repiteCuestionario() });
 }
 
+//Funcion que cierra ventana de aviso de minimo 5 preguntas
+function cierra(infor, ventana){
+    infor.innerHTML = "";
+    ventana.classList.add("esconde");
+}
+
+//Repite cuestionario actual. Click en el elemento que tenemos con el background de seleccionado.
 function repiteCuestionario() {
     let nav = document.querySelectorAll(".nav span");
     for (let n of nav) {
