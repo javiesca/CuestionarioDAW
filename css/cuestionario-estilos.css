@@ -380,7 +380,7 @@ button{
 
     .info {
       width: 90%;
-      height: 50%;
+      height: 65%;
     }
 
     .info  .infor p span{
@@ -388,7 +388,11 @@ button{
     }
 
     .info  .infor p{
-      font-size: 0.7em;
+      font-size: 0.5em;
+    }
+
+    button{
+      width: 100%;
     }
     
 
