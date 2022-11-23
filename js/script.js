@@ -149,7 +149,7 @@ function cuentaRespondidas(){
 //Función que recorre las preguntas. 
 function corrige() {
     let preguntas = document.querySelectorAll(".pregunta");
-    if(cuentaRespondidas() < 5){
+    if(cuentaRespondidas() < 0){
         minimo(cuentaRespondidas());
     }else{
         let respCorrectas = 0;
@@ -179,7 +179,37 @@ function minimo(contadorCheckeada){
 
 function resultados(respCorrectas) {
     let infor = document.querySelector(".infor");
-    infor.innerHTML += `<p>Has sacado un ${respCorrectas} en el test!!</p>`;
+
+    if(respCorrectas > 8){
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p>
+        <br><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
+        `;
+
+        let img = document.createElement("img");
+        img.src = `./images/einstein.png`;
+        img.width = "180";
+        infor.appendChild(img);
+    }else if(respCorrectas <8 && respCorrectas >5){
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p>
+        <br><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
+        `;
+        let img = document.createElement("img");
+        img.src = `./images/trofeo.png`;
+        img.width = "180";
+        infor.appendChild(img);
+    
+    //--------------------------------    
+    //REVISAR CORRECCION
+    //--------------------------------
+    }else{
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><br>
+        <p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
+        let img = document.createElement("img");
+        img.src = `./images/burro.png`;
+        img.width = "180";
+        infor.appendChild(img);
+    }  
+    
 
     let ventana = document.querySelector(".resultados");
     ventana.classList.remove("esconde");
@@ -262,6 +292,7 @@ function corrigeMultiple(pregunta) {
 
 //Función que cambia el background y añade una imagen a las respuestas según el usuario haya acertado o no.
 function pintaRespuestas(radios) {
+
     for (let radio of radios) {
         if (radio.value === "true" && radio.checked) {
             radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";

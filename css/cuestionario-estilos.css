@@ -245,27 +245,37 @@ button{
 }
 
 .info {
-  padding-top: 40px;
+  padding-top: 20px;
   background-color: rgba(255, 255, 255, 0.869);
   width: 50vw;
   height: 60%;
-  gap: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  flex-grow: 0;
 }
 
 .infor {
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  padding: 40px;
-  gap: 30px;
   height: 80%;
   font-size: 30px;
+  margin-bottom: 30px;
 }
+
+.infor img{
+  margin-top: 40px;
+}
+
+.info  .infor p span{
+  font-size: 1.2em;
+  color:rgb(136,86,86);
+}
+
 
 .botones {
   display: flex;
