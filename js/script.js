@@ -142,17 +142,14 @@ function cuentaRespondidas(){
             }
         }
     }
+    return contadorCheckeada;
 }
 
 //Función que recorre las preguntas. 
 function corrige() {
-
-    //CONDICION AL MENOS 6 PREGUNTAS CHECKEADAS
-   cuentaRespondidas();
-    
-
-    if(contadorCheckeada < 5){
-        minimo(contadorCheckeada);
+    let preguntas = document.querySelectorAll(".pregunta");
+    if(cuentaRespondidas() < 5){
+        minimo(cuentaRespondidas());
     }else{
         let respCorrectas = 0;
         //Asignamos un data-attribute según la pregunta sea simple o múltiple.
