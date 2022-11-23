@@ -148,7 +148,7 @@ function cuentaRespondidas(){
 function corrige() {
 
     //CONDICION AL MENOS 6 PREGUNTAS CHECKEADAS
-   
+   cuentaRespondidas();
     
 
     if(contadorCheckeada < 5){
