@@ -10,6 +10,8 @@ window.onload = function () {
     divNav.classList.add("nav");
 
 
+
+
     for (let categorias of test) {
 
         let span = document.createElement("span");
@@ -20,7 +22,6 @@ window.onload = function () {
         //Función pinta CATEGORIA que seleccione
         span.addEventListener("click", pinta);
 
-   
 
         function pinta() {
             //Pinta todos los nav del color original
@@ -129,19 +130,18 @@ window.onload = function () {
         };
     };
 
-
 }
 
 //Función que cuenta preguntas respondidas
 function cuentaRespondidas(){
     let preguntas = document.querySelectorAll(".pregunta");
- 
+
     let contadorCheckeada = 0;
     for (let pregunta of preguntas) {
         for (let resp of pregunta.children) {
             if (resp.children[0].checked) {
                 contadorCheckeada++;
-                break
+                break;
             }
         }
     }
@@ -151,28 +151,39 @@ function cuentaRespondidas(){
 //Función que recorre las preguntas. 
 function corrige() {
     let preguntas = document.querySelectorAll(".pregunta");
-    if(cuentaRespondidas() < 0){
+
+    document.querySelector(".minimo .pantalla").style.opacity = "1";
+    document.querySelector(".resultados .pantalla").style.opacity = "1";
+
+    if(cuentaRespondidas() < 5){
         minimo(cuentaRespondidas());
     }else{
         let respCorrectas = 0;
         //Asignamos un data-attribute según la pregunta sea simple o múltiple.
         for (let pregunta of preguntas) {
             let tipo = pregunta.dataset.tipo;
-            //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+        
             if (tipo === "simple") {
+                //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
                 respCorrectas += corrigeSimple(pregunta);
-                //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+               
             } else {
+                 //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
                 respCorrectas += corrigeMultiple(pregunta);
             }
         }
         resultados(respCorrectas);
     }
+
+    
 }
 
 function minimo(contadorCheckeada){
     let infor = document.querySelector(".minimo .infor");
-    infor.innerHTML += "<h1>Hay que marcar un mínimo de 5 preguntas</h1>"
+    let advertencia = document.createElement("img");
+    advertencia.src = `./images/advertencia.png`;
+    infor.append(advertencia);
+    infor.innerHTML += "<p>Responde un mínimo de 5 preguntas</p>"
     infor.innerHTML += `<p>Has contestado ${contadorCheckeada}</p>`;
     let ventana = document.querySelector(".minimo");
     ventana.classList.remove("esconde");
@@ -182,6 +193,7 @@ function minimo(contadorCheckeada){
 
 function resultados(respCorrectas) {
     let infor = document.querySelector(".infor");
+    
 
     if(respCorrectas > 8){
         infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
@@ -192,7 +204,7 @@ function resultados(respCorrectas) {
         
         infor.appendChild(img);
         infor.innerHTML += "<p>Eres un GENIO!!</p>";
-    }else if(respCorrectas <8 && respCorrectas >=5){
+    }else if(respCorrectas <=8 && respCorrectas >=5){
         infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
         `;
         let img = document.createElement("img");
@@ -200,10 +212,6 @@ function resultados(respCorrectas) {
         
         infor.appendChild(img);
         infor.innerHTML += "<p>Buen trabajo!!</p>";
-    
-    //--------------------------------    
-    //REVISAR CORRECCION
-    //--------------------------------
     }else{
         infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
         let img = document.createElement("img");
@@ -222,12 +230,22 @@ function resultados(respCorrectas) {
 
 //Funcion que cierra ventana para ver corrección y repetir test
 function cierraRepite(infor, ventana) {
+    document.querySelector(".minimo .pantalla").style.opacity = "0";
+    document.querySelector(".resultados .pantalla").style.opacity = "0";
+    
     infor.innerHTML = "";
     ventana.classList.add("esconde");
 
     document.querySelector(".div-boton").innerHTML = `<button class="repite">Repite</button>`;
 
     document.querySelector(".repite").addEventListener("click", () => { repiteCuestionario() });
+
+    //Desactivamos efecto HOVER en las respuestas cuando estamos revisando el examen
+    let quithov = document.querySelectorAll(".respuesta .divlabel");
+    for(let quit of quithov){
+        quit.style.pointerEvents = "none";
+    }
+
 }
 
 //Funcion que cierra ventana de aviso de minimo 5 preguntas
@@ -312,11 +330,14 @@ function pintaRespuestas(radios) {
         if (radio.value === "true") {
             radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
         }
+
+        //PINTAR DE OTRO COLOR LAS RESPUESTAS DE LAS PREGUNTAS NO SELECCIONADAS
+        //REVISAR
+
     }
 
 
+
 }
-
-
 
 
