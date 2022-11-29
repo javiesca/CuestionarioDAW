@@ -3,6 +3,10 @@
 
 
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background-image: url("../images/libros.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -10,7 +14,7 @@ body{
 }
 
 section{
-    margin: 60px auto;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -24,9 +28,6 @@ section{
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-section p{
-    text-align: justify;
-}
 
 section h1{
     font-size: 40px;
@@ -35,8 +36,15 @@ section h1{
 }
 
 section p {
+    font-size: 20px;
     line-height: 25px;
     width: 80%;
+    text-align: justify;
+}
+
+section p:nth-child(7){
+    font-size: 25px;
+    text-align: center;
 }
 
 .logos{
@@ -89,8 +97,26 @@ section p {
 }
 
 
+@media (max-width: 1300px) {
+
+    section{
+        max-width: 90%;
+    }
+
+    img{
+        height: 80px;
+    }
+
+    .icos h2{
+        font-size: 20px;
+    }
+
+    section p {
+        font-size: 15px;
+    }
 
 
+}
 
 
 

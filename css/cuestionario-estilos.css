@@ -1,6 +1,9 @@
 @import url("../css/reset.css");
 @import url("../css/variables.css");
 
+html{
+  scroll-behavior: smooth;
+}
 
 body {
   background-repeat: no-repeat;
@@ -8,21 +11,90 @@ body {
   font-family: "Montserrat", sans-serif;
   width: 100%;
   height: 100%;
+  background-color: rgb(187,198,194);
+  background-position: 50% 50%;
 }
 
-.inicio{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.instrucciones{
+  margin: 40px auto;
+  width: 40%;
+  background-color: rgba(41, 50, 65, 0.595);
+}
+
+.instrucciones h1{
+  text-align: center;
+  font-size: 40px;
+  font-weight: bolder;
+  margin-top: 20px;
+  padding: 20px;
+  color: white;
+  border-bottom: 4px solid white;
+  width: 100%;
 }
 
 .inicio h1{
   font-size: 3em;
   margin-bottom: 15px;
-  color:var(--color-principal)
+  color:var(--color-principal);
 }
 
+ ul{ 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+li{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;
+  font-size: 1.3em;
+  color: white;
+  line-height: 25px;
+}
+
+li span{
+  color: red;
+  font-weight: bolder;
+}
+
+.ins{
+  display: flex;
+  align-items:center;
+  width: 50%;
+  gap:30px;
+}
+
+.logos-puntua .ins{
+  margin-top:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.logos-puntua img{
+  height: 100px;
+}
+
+
+/*Representación de cuadrado verde y rojo en las instrucciones del cuestionario*/
+.correcion-verde{
+  height: 30px;
+  width: 60px;
+  background-color: green;
+}
+
+.correcion-rojo{
+  height: 30px;
+  width: 60px;
+  background-color: red;
+}
 
 header {
   height: 250px;
@@ -86,7 +158,6 @@ article {
   justify-content: center;
   gap: 30px;
   margin: 0 auto;
-  margin-bottom: 100px;
   background-color: var(--color-principal);
   width: 70%;
   border-radius: 10px;
@@ -204,9 +275,11 @@ input[type="checkbox"]:checked + .divlabel {
 
 
 button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 200px;
   padding: 15px 20px;
-  margin: 0 auto;
   margin-bottom: 40px;
   font-size: 18px;
   border-radius: 20px;
@@ -217,11 +290,9 @@ button{
 }
 
 
-/*REVISAR TRANSICION*/
 .esconde {
   display: none;
 }
-
 
 /*Ventanas de resultados y error de un minimo de preguntas*/
 .resultados {
@@ -229,8 +300,6 @@ button{
   height: 100%;
   position: fixed;
   top: 0;
- 
-
 }
 
 .minimo{
@@ -238,14 +307,7 @@ button{
   height: 100%;
   position: fixed;
   top: 0;
- 
 }
-
-@keyframes aparece {
-  from {opacity: 0;}
-  to{opacity: 1;}
-}
-
 
 .pantalla {
   width: 100%;
@@ -255,16 +317,12 @@ button{
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
-  opacity: 0;
-  animation-name: aparece;
-  animation-fill-mode: forwards;
-  animation-duration: 0.5s;
 }
 
 .info {
   padding-top: 20px;
   background-color: rgba(255, 255, 255, 0.869);
-  width: 60%;
+  width: 40%;
   height: 75%;
   display: flex;
   flex-direction: column;
@@ -272,7 +330,11 @@ button{
   justify-content: space-between;
   border-radius: 20px;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
- 
+}
+
+@keyframes aparece {
+  from {opacity: 0;}
+  to{opacity: 1;}
 }
 
 .infor {
@@ -283,12 +345,18 @@ button{
   height: 70%;
   font-size: 30px;
   margin-bottom: 30px;
+  opacity: 0;
+  animation-name: aparece;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
 }
 
 .infor img{
   margin: 30px auto;
   width: 30%;
 }
+
+
 
 
 .info  .infor p span{

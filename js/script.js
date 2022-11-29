@@ -4,7 +4,7 @@ window.onload = function () {
 
     let nav = document.querySelector("nav");
     let article = document.querySelector("article");
-    let inicio = document.querySelector(".inicio");
+    let instrucciones = document.querySelector(".instrucciones");
 
     let divNav = document.createElement("div");
     divNav.classList.add("nav");
@@ -33,7 +33,7 @@ window.onload = function () {
             this.style.backgroundColor = "#A46262";
 
             //Borra pagina de inicio
-            inicio.innerHTML = "";
+            instrucciones.innerHTML = "";
             //Borra preguntas anteriores
             article.innerHTML = "";
 
@@ -152,8 +152,8 @@ function cuentaRespondidas(){
 function corrige() {
     let preguntas = document.querySelectorAll(".pregunta");
 
-    document.querySelector(".minimo .pantalla").style.opacity = "1";
-    document.querySelector(".resultados .pantalla").style.opacity = "1";
+    document.querySelector(".minimo .info").style.opacity = "1";
+    document.querySelector(".resultados .info").style.opacity = "1";
 
     if(cuentaRespondidas() < 5){
         minimo(cuentaRespondidas());
@@ -230,8 +230,6 @@ function resultados(respCorrectas) {
 
 //Funcion que cierra ventana para ver corrección y repetir test
 function cierraRepite(infor, ventana) {
-    document.querySelector(".minimo .pantalla").style.opacity = "0";
-    document.querySelector(".resultados .pantalla").style.opacity = "0";
     
     infor.innerHTML = "";
     ventana.classList.add("esconde");
@@ -256,6 +254,7 @@ function cierra(infor, ventana){
 
 //Repite cuestionario actual. Click en el elemento que tenemos con el background de seleccionado.
 function repiteCuestionario() {
+    window.scrollTo(0,0);
     let nav = document.querySelectorAll(".nav span");
     for (let n of nav) {
         if (n.style.backgroundColor == "rgb(164, 98, 98)") {
