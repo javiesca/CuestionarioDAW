@@ -317,13 +317,17 @@ button{
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
+  opacity: 0;
+  animation-name: aparece;
+  animation-fill-mode: both;
+  animation-duration: 1s;
 }
 
 .info {
   padding-top: 20px;
   background-color: rgba(255, 255, 255, 0.869);
   width: 40%;
-  height: 75%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -337,6 +341,7 @@ button{
   to{opacity: 1;}
 }
 
+
 .infor {
   display: flex;
   flex-direction: column;
@@ -348,16 +353,13 @@ button{
   opacity: 0;
   animation-name: aparece;
   animation-fill-mode: forwards;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
 }
 
 .infor img{
   margin: 30px auto;
   width: 30%;
 }
-
-
-
 
 .info  .infor p span{
   font-size: 1.2em;

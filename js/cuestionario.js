@@ -1,4 +1,4 @@
-let test = [
+let cuestionario = [
     /*Categoría Ciencia*/
     {
         "categoria": "Ciencia",
@@ -569,7 +569,4 @@ let test = [
 
 ];
     
-  
-
-
-export{test};
+export{cuestionario};
