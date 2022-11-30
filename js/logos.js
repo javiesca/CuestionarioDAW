@@ -1,8 +1,8 @@
-import { test } from "./test.js";
+import { cuestionario } from "./cuestionario.js";
 
 window.onload = function () {
     let logos = document.querySelector("div");
-    for (let img of test) {
+    for (let img of cuestionario) {
         let ico = document.createElement("div");
         ico.classList.add("icos");
 

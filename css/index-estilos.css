@@ -1,7 +1,10 @@
+
+/*Importar estilos de reset y las variables*/
 @import url("../css/reset.css");
 @import url("../css/variables.css");
 
 
+/*Estilos al body*/
 body{
     display: flex;
     justify-content: center;
@@ -13,108 +16,112 @@ body{
     background-position: 50% 50%;
 }
 
+
+/*Estilos a la sección donde ira todo el contenido*/
 section{
-    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /*Color de fondo con transparencia*/
     background-color: #0131549d;
-    max-width: 60%;
+    /*Efecto degradado a esa transparencia*/
     backdrop-filter: blur(8px);
     color: white;
     border-radius: 20px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-
+/*Estilos y margenes al título*/
 section h1{
     font-size: 40px;
     margin-top: 20px;
     margin-bottom: 30px;
 }
 
+/*Estilos al texto*/
 section p {
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 1.3em;
+    line-height: 30px;
     width: 80%;
-    text-align: justify;
+    text-align: center;
 }
 
+/*Cambiamos la letra al elemento p ¡Mucha Suerte!*/
 section p:nth-child(7){
     font-size: 25px;
     text-align: center;
 }
 
+/*Propiedades al conenedor donde incluimos los logos*/
 .logos{
     background-color: rgba(255, 255, 255, 0.733);
     display: flex;
+     /*FLEX WRAP: En este caso no hacemos uso de la propiedad, ya que con los mediaquerys y solo 3 categorías los iconos no desbordan. Si añadieramos uno más, la propiedad wrap actuaría*/
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     width: 80%;
-    gap: 50px;
-    margin: 40px 0;
-    padding: 0px 40px; 
+    /*Margen arriba y abajo del contenedor de los logos*/
+    margin: 20px 0;
 }
 
+/*Propiedades al contenedor individual de imagen y texto*/
 .icos{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 40px 0;
-    gap: 20px;
-}
-
-.icos h2{
+    gap: 10px;
     color:var(--color-principal);
     font-size: 1.6em;
     font-weight: bold;
 }
 
-
+/*Propiedades al botón de Empezar cuestionario*/
 .boton{
     display: flex;
-    margin: 40px 0;
-    padding: 20px 20px;
-    background-color: #BD0533;
     justify-content: center;
     align-items: center;
+    margin: 30px 0;
+    padding: 15px 15px;
+    background-color: #BD0533;
     border-radius: 10px;
+    font-size: 20px;
+    /*Espacio entre icono libro y texto*/
     gap: 20px;
 }
 
-.boton a{
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-}
-
+/*Propiedades a icono libro de FontAwesome*/
 .boton i{
     font-size: 30px;
 }
 
+/*Aplicamos un solo media query*/
+@media (max-width: 1150px) {
 
-@media (max-width: 1300px) {
-
+    /*Aplicamos margen izquierda y derecha para despegar contendor de los bordes*/
     section{
-        max-width: 90%;
+        margin: 0 40px;
     }
 
+    /*Reducimos tamaño de los iconos*/
     img{
         height: 80px;
     }
 
+    /*Reducimos tamaño del título de cada categoria*/
     .icos h2{
         font-size: 20px;
     }
 
+    /*Reducimos tamaño del texto*/
     section p {
         font-size: 15px;
     }
 
+   
 
 }
 

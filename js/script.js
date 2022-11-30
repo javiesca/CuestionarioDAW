@@ -19,18 +19,19 @@ function pintaCuestionario(cuestionario) {
         nav.appendChild(divNav);
 
         //Función pinta CATEGORIA que seleccione
-        span.addEventListener("click", ()=> pintaCategoria(categoria, article, instrucciones, nav));
+        span.addEventListener("click", ()=> pintaCategoria(categoria, article, instrucciones,span));
     };
 }
 
-function pintaCategoria(categoria, article, instrucciones, nav) {
-    //Pinta todos los nav del color original
-    for (let nav of document.querySelectorAll("nav")) {
-        nav.style.backgroundColor = "#29324183";
+
+function pintaCategoria(categoria, article, instrucciones, span) {
+    //Recorre los span y resetea los colores
+    for (let spanReset of document.querySelectorAll("span")) {
+        spanReset.style.backgroundColor = "#29324183";
     }
 
-    //Pinta el nav selecionado en color
-    nav.style.backgroundColor = "#A46262";
+    //Pinta el span selecionado en color
+    span.style.backgroundColor = "#A46262";
 
     //Borra pagina de inicio
     instrucciones.innerHTML = "";
@@ -223,7 +224,7 @@ function resultados(respCorrectas) {
         img.src = `./images/burro.png`;
 
         infor.append(img);
-        infor.innerHTML += "<p>Uhmmmm...tienes que repasar mas</p>";
+        infor.innerHTML += "<p>Tienes que repasar</p>";
     }
 
 
@@ -260,8 +261,7 @@ function cierra(infor, ventana) {
 //Repite cuestionario actual. Click en el elemento que tenemos con el background de seleccionado.
 function repiteCuestionario() {
     window.scrollTo(0, 0);
-    let nav = document.querySelectorAll(".nav span");
-    for (let n of nav) {
+    for (let n of document.querySelectorAll("nav span")) {
         if (n.style.backgroundColor == "rgb(164, 98, 98)") {
             n.click();
             break;
