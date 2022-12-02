@@ -73,7 +73,6 @@ function pintaCategoria(categoria, article, instrucciones, span) {
     divButton.innerHTML = `<button class="corrige">Corrige</button>`
     article.appendChild(divButton);
 
-
     //QuerySelector Boton de Corregir
     document.querySelector(".corrige").addEventListener("click", () => { corrige() });
 }
