@@ -8,8 +8,8 @@ function pintaCuestionario(cuestionario) {
     let nav = document.querySelector("nav");
     let article = document.querySelector("article");
     let instrucciones = document.querySelector(".instrucciones");
-
     let divNav = document.createElement("div");
+ 
     divNav.classList.add("nav");
 
     for (let categoria of cuestionario) {
@@ -21,6 +21,10 @@ function pintaCuestionario(cuestionario) {
         //Función pinta CATEGORIA que seleccione
         span.addEventListener("click", ()=> pintaCategoria(categoria, article, instrucciones,span));
     };
+
+    let casa = document.createElement("span");
+    casa.innerHTML += "<a href='index.html'><i class='fa-solid fa-house'></i></a>";
+    divNav.prepend(casa);
 }
 
 
@@ -55,15 +59,13 @@ function pintaCategoria(categoria, article, instrucciones, span) {
     headerArticle.appendChild(icono);
 
     article.appendChild(headerArticle)
-
-    //Cambia backgroundImage de body segun la categoria.Imagen de JSON
+    
     document.body.style.backgroundImage = `url('./images/${categoria.imgbody}')`;
 
     //Contador para atributo "name" de preguntas
     let contadorPreg = 1;
     for (let pregunta of categoria.preguntas) {
         pintaPregunta(pregunta, contadorPreg, article);
-      
         contadorPreg++;
     };
 
@@ -177,6 +179,7 @@ function corrige() {
                 respCorrectas += corrigeMultiple(pregunta);
             }
         }
+
         resultados(respCorrectas);
     }
 
@@ -300,13 +303,6 @@ function corrigeMultiple(pregunta) {
         }
     }
 
-    //En las respuestas múltiples, pinta de color naranja las respuestas correctas no seleccionadas.
-    for (let correctas of cuentaCorrectas) {
-        if (!correctas.checked) {
-            correctas.nextElementSibling.style.backgroundColor = "orange";
-        }
-    }
-
     //Despues de la corrección, llamamos a la función que colorea y añade una imagen según el resultado del test.
     pintaRespuestas(radios);
 
@@ -332,14 +328,7 @@ function pintaRespuestas(radios) {
         if (radio.value === "true") {
             radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
         }
-
-        //PINTAR DE OTRO COLOR LAS RESPUESTAS DE LAS PREGUNTAS NO SELECCIONADAS
-        //REVISAR
-
     }
-
-
-
 }
 
 

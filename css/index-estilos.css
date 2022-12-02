@@ -81,21 +81,24 @@ section p:nth-child(7){
 
 /*Propiedades al botón de Empezar cuestionario*/
 .boton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 30px 0;
-    padding: 15px 15px;
+    padding: 20px 20px;
     background-color: #BD0533;
     border-radius: 10px;
     font-size: 20px;
     /*Espacio entre icono libro y texto*/
-    gap: 20px;
 }
 
 /*Propiedades a icono libro de FontAwesome*/
 .boton i{
     font-size: 30px;
+}
+
+/*Propiedades al contenedor a donde va icono fontawesome y texto*/
+a{
+    display: flex;
+    align-items: center;
+    gap:30px;
 }
 
 /*Aplicamos un solo media query*/
