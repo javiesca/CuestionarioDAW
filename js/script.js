@@ -2,7 +2,7 @@ import { cuestionario } from "./cuestionario.js";
 
 window.onload = () => {pintaCuestionario(cuestionario)}
 
-
+                // *** FUNCION DE PINTADO *** //
 //Funcion pinta NAV
 function pintaCuestionario(cuestionario, instrucciones) {
     let nav = document.querySelector("nav");
@@ -24,12 +24,20 @@ function pintaCuestionario(cuestionario, instrucciones) {
     divNav.prepend(casa);
 }
 
-
+//Pinta la categoria
 function pintaCategoria(categoria, span) {
 
     let instrucciones = document.querySelector(".instrucciones");
-
     let article = document.querySelector("article");
+
+     //Borra pagina de instrucciones
+    instrucciones.innerHTML = "";
+
+    //Borra preguntas anteriores
+    article.innerHTML = "";
+
+    //Cambia el background según la categoria
+    document.body.style.backgroundImage = `url('./images/${categoria.imgbody}')`;
 
     //Recorre los span y resetea los colores
     for (let spanReset of document.querySelectorAll("span")) {
@@ -38,12 +46,6 @@ function pintaCategoria(categoria, span) {
 
     //Pinta el span selecionado en color
     span.style.backgroundColor = "#A46262";
-
-    //Borra pagina de inicio
-    instrucciones.innerHTML = "";
-
-    //Borra preguntas anteriores
-    article.innerHTML = "";
 
     //header
     let headerArticle = document.createElement("div");
@@ -62,9 +64,6 @@ function pintaCategoria(categoria, span) {
 
     article.appendChild(headerArticle)
     
-    //Cambia el background según la categoria
-    document.body.style.backgroundImage = `url('./images/${categoria.imgbody}')`;
-
     //Contador para atributo "name" de preguntas
     let contadorPreg = 1;
     for (let pregunta of categoria.preguntas) {
@@ -72,6 +71,11 @@ function pintaCategoria(categoria, span) {
         contadorPreg++;
     };
 
+    pintaBoton(article);
+}
+
+//Pinta el botón de correcion
+function pintaBoton(article) {
     let divButton = document.createElement("div");
     divButton.classList.add("div-boton");
 
@@ -82,6 +86,7 @@ function pintaCategoria(categoria, span) {
     document.querySelector(".corrige").addEventListener("click", () => { corrige() });
 }
 
+//Pinta las preguntas
 function pintaPregunta(pregunta, contadorPreg, article) {
     let divPreg = document.createElement("div");
     divPreg.classList.add("pregunta");
@@ -123,8 +128,8 @@ function pintaPregunta(pregunta, contadorPreg, article) {
     article.appendChild(divPreg);
 }
 
+//Pinta las repuestas
 function pintaRespuesta(respuesta, pregunta, contadorResp, contadorPreg, divPreg) {
-
     let type = document.createElement("input");
     let divResp = document.createElement("div");
     divResp.classList.add("respuesta");
@@ -147,6 +152,8 @@ function pintaRespuesta(respuesta, pregunta, contadorResp, contadorPreg, divPreg
                             // *** PROCESO DE CORRECION *** //
 
 //Función que cuenta preguntas respondidas
+
+//Función que cuenta las respuestas checkeadas
 function cuentaRespondidas() {
     let preguntas = document.querySelectorAll(".pregunta");
 
@@ -176,6 +183,7 @@ function minimo(contadorCheckeada) {
     document.querySelector(".minimo .revisar").addEventListener("click", () => { cierra(infor, ventana) });
 }
 
+//Correción de preguntas simples
 function corrigeSimple(pregunta) {
     let puntuacionPregunta = 0;
     let radios = pregunta.querySelectorAll(".respuesta input");
@@ -185,9 +193,7 @@ function corrigeSimple(pregunta) {
             puntuacionPregunta++;
         }
     }
-
     pintaRespuestas(radios);
-    
     return puntuacionPregunta;
 }
 
@@ -198,8 +204,7 @@ function corrigeMultiple(pregunta) {
 
     //Asignamos un valor a la pregunta acertada devidiendo la nota total de la pregunta entre las posibles respuestas correctas.
     //ej: Si hay 2 preguntas correctas 1/2=0.5 cada respuesta acertada.
-    let cuentaCorrectas = pregunta.querySelectorAll(".respuesta input[value='true']");
-    puntuaAcierto = 1 / cuentaCorrectas.length;
+    puntuaAcierto = 1 / pregunta.querySelectorAll(".respuesta input[value='true']").length;
 
     //Recorremos las respuestas checkeadas y asignamos el valor cálculado anteriormente a cada respuesta acertada.
     let radios = pregunta.querySelectorAll(".respuesta input");
@@ -215,7 +220,7 @@ function corrigeMultiple(pregunta) {
     return puntuacionPregunta;
 }
 
-//Función que recorre las preguntas. 
+//Función que recorre las preguntas. Usamos las funciones de corrigeSimple y corrigeMultiple
 function corrige() {
     let preguntas = document.querySelectorAll(".pregunta");
     if (cuentaRespondidas() < 5) {
@@ -228,7 +233,6 @@ function corrige() {
             if (tipo === "simple") {
                 //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
                 respCorrectas += corrigeSimple(pregunta);
-
             } else {
                 //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
                 respCorrectas += corrigeMultiple(pregunta);
@@ -290,7 +294,6 @@ function pintaRespuestas(radios) {
     }
 }
 
-
             // ***  VER CORRECCION Y REPETIR CUESTIONARIO *** //
 
 //Funcion que cierra ventana para ver corrección y repetir test
@@ -308,6 +311,7 @@ function cierraRepite(infor, ventana) {
     for (let quit of quithov) {
         quit.style.pointerEvents = "none";
     }
+    window.scrollTo(0, 0);
 
 }
 
@@ -315,6 +319,7 @@ function cierraRepite(infor, ventana) {
 function cierra(infor, ventana) {
     infor.innerHTML = "";
     ventana.classList.add("esconde");
+    window.scrollTo(0, 0);
 }
 
 //Repite cuestionario actual. Click en el elemento que tenemos con el background de seleccionado.

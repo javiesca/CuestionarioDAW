@@ -184,7 +184,7 @@ article {
   /*Separa la imagen del texto*/
   gap: 40px;
   padding-bottom: 20px;
-  border-bottom: 8px solid var(--color-resaltar);
+  border-bottom: 8px solid white;
   margin-bottom: 30px;
 }
 
@@ -559,6 +559,5 @@ button{
     .info  .infor p span{
       font-size: 1.2em;
     }
- 
   }
 }
