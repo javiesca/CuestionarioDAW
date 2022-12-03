@@ -1,15 +1,12 @@
 import { cuestionario } from "./cuestionario.js";
 
-window.onload = () => { pintaCuestionario(cuestionario) }
+window.onload = () => {pintaCuestionario(cuestionario)}
 
-//Funcion pinta 
-function pintaCuestionario(cuestionario) {
-    
+
+//Funcion pinta NAV
+function pintaCuestionario(cuestionario, instrucciones) {
     let nav = document.querySelector("nav");
-    let article = document.querySelector("article");
-    let instrucciones = document.querySelector(".instrucciones");
     let divNav = document.createElement("div");
- 
     divNav.classList.add("nav");
 
     for (let categoria of cuestionario) {
@@ -19,7 +16,7 @@ function pintaCuestionario(cuestionario) {
         nav.appendChild(divNav);
 
         //Función pinta CATEGORIA que seleccione
-        span.addEventListener("click", ()=> pintaCategoria(categoria, article, instrucciones,span));
+        span.addEventListener("click", ()=> pintaCategoria(categoria, span));
     };
 
     let casa = document.createElement("span");
@@ -28,7 +25,12 @@ function pintaCuestionario(cuestionario) {
 }
 
 
-function pintaCategoria(categoria, article, instrucciones, span) {
+function pintaCategoria(categoria, span) {
+
+    let instrucciones = document.querySelector(".instrucciones");
+
+    let article = document.querySelector("article");
+
     //Recorre los span y resetea los colores
     for (let spanReset of document.querySelectorAll("span")) {
         spanReset.style.backgroundColor = "#29324183";
@@ -60,6 +62,7 @@ function pintaCategoria(categoria, article, instrucciones, span) {
 
     article.appendChild(headerArticle)
     
+    //Cambia el background según la categoria
     document.body.style.backgroundImage = `url('./images/${categoria.imgbody}')`;
 
     //Contador para atributo "name" de preguntas
@@ -109,6 +112,8 @@ function pintaPregunta(pregunta, contadorPreg, article) {
 
     //Contador para atributo "id" y "for" de type radio y label
     let contadorResp = 1;
+
+    //Bucle que pinta las respuestas, llamamos a la función
     for (let respuesta of pregunta.respuestas) {
         pintaRespuesta(respuesta, pregunta, contadorResp, contadorPreg, divPreg);
         contadorResp++;
@@ -139,6 +144,8 @@ function pintaRespuesta(respuesta, pregunta, contadorResp, contadorPreg, divPreg
     divPreg.appendChild(divResp);
 }
 
+                            // *** PROCESO DE CORRECION *** //
+
 //Función que cuenta preguntas respondidas
 function cuentaRespondidas() {
     let preguntas = document.querySelectorAll(".pregunta");
@@ -155,37 +162,7 @@ function cuentaRespondidas() {
     return contadorCheckeada;
 }
 
-//Función que recorre las preguntas. 
-function corrige() {
-    let preguntas = document.querySelectorAll(".pregunta");
-
-    document.querySelector(".minimo .info").style.opacity = "1";
-    document.querySelector(".resultados .info").style.opacity = "1";
-
-    if (cuentaRespondidas() < 5) {
-        minimo(cuentaRespondidas());
-    } else {
-        let respCorrectas = 0;
-        //Asignamos un data-attribute según la pregunta sea simple o múltiple.
-        for (let pregunta of preguntas) {
-            let tipo = pregunta.dataset.tipo;
-
-            if (tipo === "simple") {
-                //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-                respCorrectas += corrigeSimple(pregunta);
-
-            } else {
-                //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
-                respCorrectas += corrigeMultiple(pregunta);
-            }
-        }
-
-        resultados(respCorrectas);
-    }
-
-
-}
-
+//Ventana advertencia minimo de preguntas
 function minimo(contadorCheckeada) {
     let infor = document.querySelector(".minimo .infor");
     let advertencia = document.createElement("img");
@@ -199,42 +176,122 @@ function minimo(contadorCheckeada) {
     document.querySelector(".minimo .revisar").addEventListener("click", () => { cierra(infor, ventana) });
 }
 
+function corrigeSimple(pregunta) {
+    let puntuacionPregunta = 0;
+    let radios = pregunta.querySelectorAll(".respuesta input");
+
+    for (let radio of radios) {
+        if (radio.value === "true" && radio.checked) {
+            puntuacionPregunta++;
+        }
+    }
+
+    pintaRespuestas(radios);
+    
+    return puntuacionPregunta;
+}
+
+//Función que corrige las respuestas múltiples
+function corrigeMultiple(pregunta) {
+    let puntuacionPregunta = 0;
+    let puntuaAcierto = 0;
+
+    //Asignamos un valor a la pregunta acertada devidiendo la nota total de la pregunta entre las posibles respuestas correctas.
+    //ej: Si hay 2 preguntas correctas 1/2=0.5 cada respuesta acertada.
+    let cuentaCorrectas = pregunta.querySelectorAll(".respuesta input[value='true']");
+    puntuaAcierto = 1 / cuentaCorrectas.length;
+
+    //Recorremos las respuestas checkeadas y asignamos el valor cálculado anteriormente a cada respuesta acertada.
+    let radios = pregunta.querySelectorAll(".respuesta input");
+    for (let correctas of radios) {
+        if (correctas.checked && correctas.value == "true") {
+            puntuacionPregunta += puntuaAcierto;
+        }
+    }
+
+    //Despues de la corrección, llamamos a la función que colorea y añade una imagen según el resultado del test.
+    pintaRespuestas(radios);
+
+    return puntuacionPregunta;
+}
+
+//Función que recorre las preguntas. 
+function corrige() {
+    let preguntas = document.querySelectorAll(".pregunta");
+    if (cuentaRespondidas() < 5) {
+        minimo(cuentaRespondidas());
+    } else {
+        let respCorrectas = 0;
+        //Asignamos un data-attribute según la pregunta sea simple o múltiple.
+        for (let pregunta of preguntas) {
+            let tipo = pregunta.dataset.tipo;
+            if (tipo === "simple") {
+                //Si la pregunta es simple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+                respCorrectas += corrigeSimple(pregunta);
+
+            } else {
+                //Si la pregunta es múltiple la funcion corrigeSimple nos retorna un valor numérico de la corrección de esta pregunta
+                respCorrectas += corrigeMultiple(pregunta);
+            }
+        }
+        resultados(respCorrectas);
+    }
+}
+
+//Ventana resultados de correccion
 function resultados(respCorrectas) {
     let infor = document.querySelector(".infor");
 
-
     if (respCorrectas > 8) {
-        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
-        `;
-
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
         let img = document.createElement("img");
         img.src = `./images/einstein.png`;
-
         infor.appendChild(img);
         infor.innerHTML += "<p>Eres un GENIO!!</p>";
     } else if (respCorrectas <= 8 && respCorrectas >= 5) {
-        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>
-        `;
+        infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
         let img = document.createElement("img");
         img.src = `./images/trofeo.png`;
-
         infor.appendChild(img);
         infor.innerHTML += "<p>Buen trabajo!!</p>";
     } else {
         infor.innerHTML += `<p>Tu nota es: <span>${respCorrectas}</span></p><p>Respuestas marcadas: ${cuentaRespondidas()}</p>`;
         let img = document.createElement("img");
         img.src = `./images/burro.png`;
-
         infor.append(img);
         infor.innerHTML += "<p>Tienes que repasar</p>";
     }
-
 
     let ventana = document.querySelector(".resultados");
     ventana.classList.remove("esconde");
 
     document.querySelector(".revisar").addEventListener("click", () => { cierraRepite(infor, ventana) });
 }
+
+//Función que cambia el background y añade una imagen a las respuestas según el usuario haya acertado o no.
+function pintaRespuestas(radios) {
+
+    for (let radio of radios) {
+        if (radio.value === "true" && radio.checked) {
+            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
+            radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
+            radio.nextElementSibling.style.borderRadius = "10px";
+        }
+
+        if (radio.value === "false" && radio.checked) {
+            radio.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
+            radio.nextElementSibling.style.borderRadius = "10px";
+            radio.nextElementSibling.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
+        }
+
+        if (radio.value === "true") {
+            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
+        }
+    }
+}
+
+
+            // ***  VER CORRECCION Y REPETIR CUESTIONARIO *** //
 
 //Funcion que cierra ventana para ver corrección y repetir test
 function cierraRepite(infor, ventana) {
@@ -271,64 +328,6 @@ function repiteCuestionario() {
     }
 }
 
-function corrigeSimple(pregunta) {
-    let puntuacionPregunta = 0;
-    let radios = pregunta.querySelectorAll(".respuesta input");
 
-    for (let radio of radios) {
-        if (radio.value === "true" && radio.checked) {
-            puntuacionPregunta++;
-        }
-    }
-
-    pintaRespuestas(radios);
-    return puntuacionPregunta;
-}
-
-//Función que corrige las respuestas múltiples
-function corrigeMultiple(pregunta) {
-    let puntuacionPregunta = 0;
-    let puntuaAcierto = 0;
-
-    //Asignamos un valor a la pregunta acertada devidiendo la nota total de la pregunta entre las posibles respuestas correctas.
-    //ej: Si hay 2 preguntas correctas 1/2=0.5 cada respuesta acertada.
-    let cuentaCorrectas = pregunta.querySelectorAll(".respuesta input[value='true']");
-    puntuaAcierto = 1 / cuentaCorrectas.length;
-
-    //Recorremos las respuestas checkeadas y asignamos el valor cálculado anteriormente a cada respuesta acertada.
-    let radios = pregunta.querySelectorAll(".respuesta input");
-    for (let correctas of radios) {
-        if (correctas.checked && correctas.value == "true") {
-            puntuacionPregunta += puntuaAcierto;
-        }
-    }
-
-    //Despues de la corrección, llamamos a la función que colorea y añade una imagen según el resultado del test.
-    pintaRespuestas(radios);
-
-    return puntuacionPregunta;
-}
-
-//Función que cambia el background y añade una imagen a las respuestas según el usuario haya acertado o no.
-function pintaRespuestas(radios) {
-
-    for (let radio of radios) {
-        if (radio.value === "true" && radio.checked) {
-            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
-            radio.nextElementSibling.innerHTML += `<img src="images/correcto.png" alt="" width="40">`;
-            radio.nextElementSibling.style.borderRadius = "10px";
-        }
-
-        if (radio.value === "false" && radio.checked) {
-            radio.nextElementSibling.style.backgroundColor = "rgba(171, 19, 19, 0.492)";
-            radio.nextElementSibling.style.borderRadius = "10px";
-            radio.nextElementSibling.innerHTML += `<img src="images/incorrecto.png" alt="" width="40">`;
-        }
-
-        if (radio.value === "true") {
-            radio.nextElementSibling.style.backgroundColor = "rgba(32, 108, 32, 0.486)";
-        }
-    }
-}
 
 

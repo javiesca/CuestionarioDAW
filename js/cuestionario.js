@@ -60,25 +60,25 @@ let cuestionario = [
                 ]
             },
             {
-                "pregunta": "¿Cuantos polos tiene un imán y en qué dirección están?",
-                "tipo": "simple",
+                "pregunta": "¿Qué animales solo podras ver en Australia?",
+                "tipo": "multiple",
                 "respuestas": [
                     {
-                        "respuesta": "1 polo que va al norte",
+                        "respuesta": "Tigre",
                         "correcta": ""
                     },
                     {
-                        "respuesta": "2 polos que van al norte y al sur",
+                        "respuesta": "Canguro",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "1 polo que va al sur",
-                        "correcta": ""
+                        "respuesta": "Dingo",
+                        "correcta": "true"
                     }
                 ]
             },
             {
-                "pregunta": "¿Cuál de estos es un recurso renovable?",
+                "pregunta": "¿Cuál de estos son un recurso renovable?",
                 "tipo": "multiple",
                 "respuestas": [
                     {
@@ -150,19 +150,19 @@ let cuestionario = [
                 ]
             },
             {
-                "pregunta": "¿Cuál de estas no es una parte de las células de un animal?",
+                "pregunta": "¿Qué organos intervienen en el sistema circulatorio?",
                 "tipo": "multiple",
                 "respuestas": [
                     {
-                        "respuesta": "Vacuolas",
+                        "respuesta": "Corazón",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "Pared celular",
+                        "respuesta": "Pulmones",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "Mitocondria",
+                        "respuesta": "Estomago",
                         "correcta": ""
                     }
                 ]
@@ -195,20 +195,20 @@ let cuestionario = [
         "imgico":"icoGeografía.png",
         "preguntas": [
             {
-                "pregunta": "¿En que países NO se localiza la ciudad de Hamburgo?",
+                "pregunta": "¿Qué dos cuidades están en  Alemania?",
                 "tipo": "multiple",
                 "respuestas": [
                     {
-                        "respuesta": "Bélgica",
+                        "respuesta": "Colonia",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "Hungría",
+                        "respuesta": "Munich",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "Alemania",
-                        "correcta": "false"
+                        "respuesta": "Zurich",
+                        "correcta": ""
                     }
                 ]
             },
@@ -321,20 +321,20 @@ let cuestionario = [
                 ]
             },
             {
-                "pregunta": "¿Cuál de estos países NO es centroamericano?",
+                "pregunta": "¿Cuál de estos países son centroamericano?",
                 "tipo": "multiple",
                 "respuestas": [
                     {
-                        "respuesta": "USA",
+                        "respuesta": "Guatemala",
                         "correcta": "true"
+                    },
+                    {
+                        "respuesta": "Méjico",
+                        "correcta": ""
                     },
                     {
                         "respuesta": "Panamá",
                         "correcta": ""
-                    },
-                    {
-                        "respuesta": "Colombia",
-                        "correcta": "true"
                     }
                 ]
             },
@@ -455,15 +455,15 @@ let cuestionario = [
                 ]
             },
             {
-                "pregunta": "¿Como murio Juana de Arco?",
-                "tipo": "simple",
+                "pregunta": "¿Que paises formaban las potencias Aliadas en la 2º Guerra Mundial?",
+                "tipo": "multiple",
                 "respuestas": [
                     {
-                        "respuesta": "Ahoracada",
-                        "correcta": ""
+                        "respuesta": "Gran Bretaña",
+                        "correcta": "true"
                     },
                     {
-                        "respuesta": "Lapidada",
+                        "respuesta": "Italia",
                         "correcta": ""
                     },
                     {
@@ -509,19 +509,19 @@ let cuestionario = [
                 ]
             },
             {
-                "pregunta": "¿Contra quién lucho Leónidas en la Batalla de las Termópilas?",
+                "pregunta": "¿Que partidos politicos participaron en las elecciones generales del 77?",
                 "tipo": "simple",
                 "respuestas": [
                     {
-                        "respuesta": "Darío",
+                        "respuesta": "UCD",
                         "correcta": "true"
                     },
                     {
-                        "respuesta": "Temístocles",
+                        "respuesta": "PP",
                         "correcta": ""
                     },
                     {
-                        "respuesta": "Jerjes",
+                        "respuesta": "PSOE",
                         "correcta": "true"
                     }
                 ]
